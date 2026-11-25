@@ -8,8 +8,8 @@
 
 | Atribut Dokumen | Detail |
 |---|---|
-| **Kode & Versi Dokumen** | `SANTAP-SSOT-v1.1` |
-| **Status Penguncian** | **LOCKED SSOT v1.1** *(Bahasa terkunci: **Java Native (Java 11)** — Acuan resmi kode Android Studio, PPT, dan Live Demo)* |
+| **Kode & Versi Dokumen** | `SANTAP-SSOT-v1.2` |
+| **Status Penguncian** | **LOCKED SSOT v1.2** *(Identitas tim 3 anggota terkunci; Bahasa: **Java Native (Java 11)** — Acuan resmi kode Android Studio, Milestone, PPT, dan Live Demo)* |
 | **Tanggal Pembaruan Terakhir** | 25 November 2026 |
 | **Mata Kuliah & Penugasan** | Final Project Pemrograman Mobile (Semester 5 — Android Studio Native) |
 | **Jadwal Presentasi & Demo** | **9 Desember 2026** di hadapan Dosen & Asisten *(Catatan jadwal: pertemuan 2 Desember 2026 hanya absen)* |
@@ -30,6 +30,7 @@
 | `v0.1` | Pra-25 Nov 2026 | Penyusunan konsep awal 5W+1H **SANTAP** berbasis Web/PWA (Leaflet/MapLibre, PostgreSQL PostGIS, Open-Meteo, LLM API). |
 | `v1.0` | 25 Nov 2026 | Penyelarasan penuh konsep SANTAP menjadi proyek **Android Studio Native** untuk Final Project Pemrograman Mobile: penguncian 4 sensor inti + 1 sensor bonus, peta **OpenStreetMap (`osmdroid`)**, Room DB sebagai SSOT klien, pengayaan 9 jurnal ilmiah ber-DOI & 5 sumber dataset (Kaggle/IndoNLU/Open Data), serta penyusunan blueprint 7 slide PPT & skenario Live Demo 9 Desember 2026. |
 | `v1.1` | 25 Nov 2026 | **Penguncian Bahasa Java Native (Java 11)** sesuai kesepakatan tim: pembaruan arsitektur MVVM ke `LiveData` + `ExecutorService` (menggantikan `StateFlow`), dukungan opsi Room Java `annotationProcessor` / `SQLiteOpenHelper`, penyelarasan detail teknis `osmdroid` (`setUserAgentValue`, `LocationListener`, default koordinat Surabaya) dari `GPSAPP`, serta penambahan `ADR-006` (*Code Pattern Reuse* dari `Tugas7Sensor`). |
+| `v1.2` | 25 Nov 2026 | Pengisian identitas resmi **3 anggota kelompok** (`Rayhan Agnan Kusuma`, `Ni'mah Fauziyyah Atok`, `M. Faqih Ridho`), penyeimbangan ulang PIC fitur pada Scope Triage, serta penambahan **Peta Milestone (`M0`–`M5`) & Checklist Eksekusi** di Bagian 12 menuju demo 9 Desember 2026. |
 
 ---
 
@@ -46,7 +47,7 @@
 9. [Model Data Relasional (Room Database Schema)](#9-model-data-relasional-room-database-schema)
 10. [Logika Inti Analisis Atmosfer, Emosi, dan Rumus Penilaian](#10-logika-inti-analisis-atmosfer-emosi-dan-rumus-penilaian)
 11. [Privasi, Keamanan Kredensial, dan Manajemen Risiko Demo](#11-privasi-keamanan-kredensial-dan-manajemen-risiko-demo)
-12. [Timeline Eksekusi 14 Hari (25 November – 9 Desember 2026) & Pembagian Peran](#12-timeline-eksekusi-14-hari-25-november--9-desember-2026--pembagian-peran)
+12. [Milestone Pembuatan Aplikasi & Timeline Eksekusi (25 November – 9 Desember 2026)](#12-milestone-pembuatan-aplikasi--timeline-eksekusi-25-november--9-desember-2026)
 13. [Blueprint Presentasi PPT (7 Slide) & Skenario Live Demo](#13-blueprint-presentasi-ppt-7-slide--skenario-live-demo)
 14. [Strategi Pertahanan Tanya Jawab (Q&A Dosen & Asisten)](#14-strategi-pertahanan-tanya-jawab-qa-dosen--asisten)
 15. [Daftar Pustaka, Dataset, dan Referensi Terverifikasi](#15-daftar-pustaka-dataset-dan-referensi-terverifikasi)
@@ -80,14 +81,13 @@
 | 4 | **Presentasi minimal 5 slide PPT** (membuat apa, tujuan, sensor apa saja yang digunakan) | Disusun blueprint **7 slide terstruktur** (melampaui batas minimal 5 slide) yang menjawab tegas: *apa yang dibuat*, *tujuan & urgensi ilmiah*, *sensor & peta yang dipakai*, *AI/dataset*, serta *skenario demo*. | `TERPENUHI` |
 | 5 | **Mendemokan aplikasi yang berjalan** (*Live Demo*) | APK terinstal di HP Android fisik + *screen mirroring* (`scrcpy`/USB) dengan skenario demo 5 aksi nyata sensor + *Offline Fallback Mode* jika sinyal ruang kelas terganggu. | `TARGET` |
 
-### 1.3 Identitas Anggota Kelompok *(Lengkapi Sebelum Submit/Presentasi)*
+### 1.3 Identitas Anggota Kelompok *(Terkunci — 3 Anggota)*
 
-| Peran Tim | Nama Lengkap & NRP | Tanggung Jawab Teknis di SANTAP |
-|---|---|---|
-| **Lead — Product & OSMDroid Map** | `[Isi Nama & NRP Anggota 1]` | Integrasi GPS & peta `osmdroid`, *pin marker* dinamis skor, Haversine distance, dan koordinasi presentasi |
-| **Sensor & Hardware Engineer** | `[Isi Nama & NRP Anggota 2]` | Modul `Accelerometer` (*Shake-to-SANTAP*), `Ambient Light` (*Hysteresis + Context*), `Compass Fusion`, dan *5 Prinsip Emas* |
-| **AI & Data Engineer** | `[Isi Nama & NRP Anggota 3]` | Integrasi Open-Meteo API, Mood-to-Food AI (Gemini/Groq + *Offline Lexicon*), Room DB SSOT, & kurasi *seed* kuliner dari Kaggle/Overpass |
-| **UI/UX Material 3 & QA/Demo Lead** | `[Isi Nama & NRP Anggota 4]` | Antarmuka Material Design 3, *BottomSheet/AlertDialog*, *Implicit Intent*, pengujian HP fisik, dan penyusunan 7 slide PPT |
+| Nama Lengkap | NRP | Peran Teknis di SANTAP | Tanggung Jawab Utama *(Tanpa Tumpang Tindih)* |
+|---|---|---|---|
+| **M. Faqih Ridho** | `5027241123` | **Team Lead — UI/UX, Navigasi & QA/PPT** | Koordinasi tim, rancangan UI XML Material Design 3 (`RecyclerView` daftar + filter, halaman Detail, `AlertDialog`, `Implicit Intent` rute & bagikan), pengujian fungsional HP fisik, serta penyusunan 7 slide PPT & orkestrasi presentasi/demo |
+| **Rayhan Agnan Kusuma** | `502724101` | **Map & Multi-Sensor Engineer** | Seluruh modul **GPS & Peta `osmdroid`** (layar `MapFragment` & *marker* skor) serta seluruh modul **Sensor Android** (*Accelerometer Shake*, *Ambient Light Hysteresis*, *Digital Compass Bearing* + jarum kompasnya, *Live Sensor Monitor*, & *5 Prinsip Emas*) |
+| **Ni'mah Fauziyyah Atok** | `502724102` | **AI, Weather API & Local Data Engineer** | Seluruh lapisan data & logika rekomendasi — **Room DB / `SQLiteOpenHelper` (SSOT)**, ekstraksi & kurasi *seed* 30–50 POI kuliner (Overpass/Kaggle), integrasi **Open-Meteo API**, serta **Hybrid Mood-to-Food AI & `ContextFusionScorer`** |
 
 ---
 
@@ -272,15 +272,15 @@ Untuk memastikan aplikasi berjalan 100% stabil saat **Live Demo 9 Desember 2026*
 
 | ID Fitur | Prioritas | Nama Fitur & Spesifikasi Singkat | PIC Utama | Target Selesai |
 |---|---|---|---|---|
-| `P0-01` | **P0 (Wajib Demo)** | **OSMDroid Dynamic Mood-Map & GPS Tracker:** Peta OpenStreetMap interaktif (`setUserAgentValue` sebelum `setContentView`, koordinat default Surabaya `-7.2575, 112.7521`), `LocationManager` + `LocationListener` (`onProviderEnabled/Disabled`, `removeUpdates` di `onPause`), *marker* warna skor, plus tombol *Fallback Lokasi Demo Kampus*. | Lead (Map) | 30 Nov 2026 |
-| `P0-02` | **P0 (Wajib Demo)** | **Open-Meteo Real-Time Weather & Cache:** Pengambilan suhu, curah hujan, dan kode cuaca otomatis per koordinat GPS via Retrofit + penyimpanan cache lokal di SharedPreferences/Room. | AI & Data Eng | 29 Nov 2026 |
-| `P0-03` | **P0 (Wajib Demo)** | **Multi-Sensor Engine (3+ Sensor Kuliah):**<br>• `Accelerometer`: *Shake-to-SANTAP* ($\Delta g > 12.0$, debounce `1000 ms`)<br>• `Ambient Light`: Klasifikasi Lux lingkungan + *Auto Dark Mode Hysteresis* (`<10` / `>80` Lux)<br>• `Magnetometer + Accelerometer`: *Digital Compass* penunjuk arah restoran (*bearing* vs *azimuth*)<br>Mematuhi 5 Prinsip Emas Sensor. | Sensor Eng | 1 Des 2026 |
-| `P0-04` | **P0 (Wajib Demo)** | **Hybrid Mood-to-Food AI & Context Scorer:** Analisis emoji & teks bebas Bahasa Indonesia memakai Gemini/Groq API terstruktur **plus** *Offline Lexicon & Weighted Context Scorer* (berbasis IndoNLU & Kaggle `Food choices`) agar tetap jalan tanpa internet. | AI & Data Eng | 3 Des 2026 |
-| `P0-05` | **P0 (Wajib Demo)** | **Room Database SSOT (`annotationProcessor`) & Local Culinary Seed:** Skema Room Java (`places`, `mood_sessions`, `recommendation_logs`) — atau `SQLiteOpenHelper` (`DbHelper.java`) sesuai pola `Tugas 4–6` — berisi minimal **30–50 kuliner nyata sekitar kampus/kota uji** hasil ekstraksi Overpass API + kurasi atribut atmosfer. | AI & Data Eng | 28 Nov 2026 |
-| `P0-06` | **P0 (Wajib Demo)** | **Material 3 UI, List/Filter, Dialog & Implicit Intent:** Bottom Navigation (`Peta`, `Daftar`, `Detail/Kompas`), filter harga/radius, `AlertDialog` hasil *Shake*, serta *Implicit Intent* buka rute & bagikan rekomendasi. | UI/UX & QA | 5 Des 2026 |
-| `P1-01` | **P1 (Nilai Tambah)** | **Live Sensor Monitor Sheet:** *BottomSheet* ringkas yang menampilkan angka *real-time* GPS, $\Delta g$ Accelerometer, Lux Cahaya, dan Azimuth Kompas — sangat membantu membuktikan ke dosen & asisten bahwa seluruh sensor benar-benar aktif! | Sensor Eng | 6 Des 2026 |
-| `P1-02` | **P1 (Nilai Tambah)** | **Step Counter Fatigue Modifier (`TYPE_STEP_COUNTER`):** Membaca jumlah langkah kaki (izin `ACTIVITY_RECOGNITION`) untuk otomatis memprioritaskan kuliner terdekat ($\le 400\text{ m}$) saat pengguna sudah banyak berjalan. | Sensor Eng | 6 Des 2026 |
-| `P1-03` | **P1 (Nilai Tambah)** | **Riwayat Sesi Mood & Tempat Favorit:** Daftar riwayat pencarian suasana hati dan *bookmark* tempat makan favorit di Room DB. | UI/UX & QA | 7 Des 2026 |
+| `P0-01` | **P0 (Wajib Demo)** | **OSMDroid Dynamic Mood-Map & GPS Tracker:** Peta OpenStreetMap interaktif (`setUserAgentValue` sebelum `setContentView`, koordinat default Surabaya `-7.2575, 112.7521`), `LocationManager` + `LocationListener` (`onProviderEnabled/Disabled`, `removeUpdates` di `onPause`), *marker* warna skor, plus tombol *Fallback Lokasi Demo Kampus*. | Rayhan | 30 Nov 2026 |
+| `P0-02` | **P0 (Wajib Demo)** | **Open-Meteo Real-Time Weather & Cache:** Pengambilan suhu, curah hujan, dan kode cuaca otomatis per koordinat GPS via Retrofit + penyimpanan cache lokal di SharedPreferences/Room. | Ni'mah | 29 Nov 2026 |
+| `P0-03` | **P0 (Wajib Demo)** | **Multi-Sensor Engine (3+ Sensor Kuliah):**<br>• `Accelerometer`: *Shake-to-SANTAP* ($\Delta g > 12.0$, debounce `1000 ms`)<br>• `Ambient Light`: Klasifikasi Lux lingkungan + *Auto Dark Mode Hysteresis* (`<10` / `>80` Lux)<br>• `Magnetometer + Accelerometer`: *Digital Compass* penunjuk arah restoran (*bearing* vs *azimuth*)<br>Mematuhi 5 Prinsip Emas Sensor. | Rayhan | 1 Des 2026 |
+| `P0-04` | **P0 (Wajib Demo)** | **Hybrid Mood-to-Food AI & Context Scorer:** Analisis emoji & teks bebas Bahasa Indonesia memakai Gemini/Groq API terstruktur **plus** *Offline Lexicon & Weighted Context Scorer* (berbasis IndoNLU & Kaggle `Food choices`) agar tetap jalan tanpa internet. | Ni'mah | 3 Des 2026 |
+| `P0-05` | **P0 (Wajib Demo)** | **Room Database SSOT (`annotationProcessor`) & Local Culinary Seed:** Skema Room Java (`places`, `mood_sessions`, `recommendation_logs`) — atau `SQLiteOpenHelper` (`DbHelper.java`) sesuai pola `Tugas 4–6` — berisi minimal **30–50 kuliner nyata sekitar kampus/kota uji** hasil ekstraksi Overpass API + kurasi atribut atmosfer. | Ni'mah | 28 Nov 2026 |
+| `P0-06` | **P0 (Wajib Demo)** | **Material 3 UI, List/Filter, Dialog & Implicit Intent:** Bottom Navigation (`Daftar`, `Detail`), `RecyclerView` + filter harga/radius, `AlertDialog` hasil *Shake*, serta *Implicit Intent* buka rute & bagikan rekomendasi. | Faqih | 5 Des 2026 |
+| `P1-01` | **P1 (Nilai Tambah)** | **Live Sensor Monitor Sheet:** *BottomSheet* ringkas yang menampilkan angka *real-time* GPS, $\Delta g$ Accelerometer, Lux Cahaya, dan Azimuth Kompas — sangat membantu membuktikan ke dosen & asisten bahwa seluruh sensor benar-benar aktif! | Rayhan | 6 Des 2026 |
+| `P1-02` | **P1 (Nilai Tambah)** | **Step Counter Fatigue Modifier (`TYPE_STEP_COUNTER`):** Membaca jumlah langkah kaki (izin `ACTIVITY_RECOGNITION`) untuk otomatis memprioritaskan kuliner terdekat ($\le 400\text{ m}$) saat pengguna sudah banyak berjalan. | Rayhan | 6 Des 2026 |
+| `P1-03` | **P1 (Nilai Tambah)** | **Riwayat Sesi Mood & Tempat Favorit:** Daftar riwayat pencarian suasana hati dan *bookmark* tempat makan favorit di Room DB. | Faqih | 7 Des 2026 |
 | `P2-01` | **P2 (Roadmap)** | **Backend Cloud PostgreSQL (PostGIS) & Crowdsourcing UMKM:** Sinkronisasi katalog kuliner dinamis antar pengguna dan dasbor mitra UMKM. | Pasca-FP | Pasca-9 Des |
 | `P2-02` | **P2 (Roadmap)** | **Versi Lintas Platform (PWA / iOS) & Fine-Tuned TFLite Model:** Model klasifikasi emosi *on-device* berbasis IndoBERT-lite/TFLite. | Pasca-FP | Pasca-9 Des |
 
@@ -490,20 +490,49 @@ Keterangan komponen ($0 \le S_i \le 100$):
 
 ---
 
-## 12. Timeline Eksekusi 14 Hari (25 November – 9 Desember 2026) & Pembagian Peran
+## 12. Milestone Pembuatan Aplikasi & Timeline Eksekusi (25 November – 9 Desember 2026)
 
-### 12.1 Jadwal Kerja Terukur
+### 12.1 Peta Milestone (`M0` – `M5`)
+
+```mermaid
+flowchart LR
+    M0["M0: 25 Nov<br/>Setup Repo Java 11 & SSOT"] --> M1["M1: 28 Nov<br/>Seed POI, Room & OSMDroid"]
+    M1 --> M2["M2: 1 Des<br/>4 Sensor + Hybrid AI Ready"]
+    M2 --> M3["M3: 2 Des (Absen)<br/>Integrasi Modul di 1 HP"]
+    M3 --> M4["M4: 6 Des<br/>UI M3, P1 & QA Fisik"]
+    M4 --> M5["M5: 7-9 Des<br/>Freeze APK, PPT & Demo"]
+```
+
+| Milestone | Target Tanggal | Nama Milestone | Deliverable Utama | Kriteria Lulus (*Definition of Done*) | PIC Utama |
+|---|---|---|---|---|---|
+| **`M0`** | **25 Nov 2026** | **Project Kickoff & SSOT Lock** | Repo GitHub + struktur proyek Android Studio Java 11 (`osmdroid`, `Room`/`SQLite`, `Retrofit`, Material 3) + ekstraksi awal POI kuliner sekitar kampus. | Proyek *build* bersih tanpa error Gradle; `SANTAP-SSOT-v1.2` terkunci; 30–50 POI awal terkumpul. | Seluruh Tim |
+| **`M1`** | **28 Nov 2026** | **Foundation Complete (Map + Weather + Data)** | `P0-01` Peta `osmdroid` + `LocationListener`, `P0-02` Open-Meteo Retrofit + Cache, `P0-05` Room DB / `DbHelper` terisi *seed* kuliner. | Peta terbuka di koordinat Surabaya (`-7.2575, 112.7521`), suhu/cuaca tampil, dan minimal 30 POI tampil sebagai *marker* dari DB lokal. | Rayhan + Ni'mah |
+| **`M2`** | **1 Des 2026** | **Core Sensors & Hybrid AI Ready** | `P0-03` Modul Accelerometer (*Shake*), Ambient Light (*Hysteresis*), & Compass Fusion; `P0-04` Hybrid Mood Analyzer (LLM + *Offline Lexicon*) & *ContextFusionScorer*. | *Shake* memicu event dengan debounce `1000 ms`, Light sensor mengubah mode Dark/Light tanpa kedip, dan scorer menghasilkan nilai `0–100` dalam $< 300\text{ ms}$ (offline). | Rayhan + Ni'mah |
+| **`M3`** | **2 Des 2026** *(Minggu Depan)* | **Mid-Point Integration Gate (Hari Absen Kelas)** | Penggabungan branch seluruh anggota ke `main`; **Absen Kelas Pemrograman Mobile** sekaligus uji integrasi awal. | Seluruh alur P0 dasar (*Peta + Cuaca + Input Mood + Shake*) berjalan menyatu di **1 HP Android fisik** tanpa *crash* rotasi/background. | Seluruh Tim |
+| **`M4`** | **6 Des 2026** | **UI Complete, P1 Polish & Hardware QA** | `P0-06` UI Material 3 lengkap (`RecyclerView`, `AlertDialog`, Detail + Jarum Kompas, `Implicit Intent`) + fitur `P1-01` (*Live Sensor Monitor Sheet*) & uji skenario *offline/indoor*. | Seluruh 5 aksi skenario demo berjalan lancar; 0 kebocoran listener (`onPause` dicek); *Offline Fallback* & *Demo Lokasi Kampus* terverifikasi. | Faqih + Rayhan |
+| **`M5`** | **7–9 Des 2026** | **APK Freeze, 7-Slide PPT & Demo Day** | **7 Des:** Freeze APK `v1.0-demo`.<br>**8 Des:** Finalisasi **7 Slide PPT** & Gladi Resik (*scrcpy* + Q&A).<br>**9 Des:** **Presentasi & Live Demo** di hadapan Dosen & Asisten. | APK cadangan terinstal di 2 HP fisik; PPT siap offline; seluruh 3 anggota menguasai skenario demo & jawaban Q&A Bagian 14. | Seluruh Tim |
+
+### 12.2 Checklist Eksekusi Milestone (`Track Progress`)
+
+- **M0 (25 Nov):** `[ ]` Setup project Android Studio Java 11 & push ke GitHub `[ ]` Ekstrak 30–50 POI kuliner via Overpass API
+- **M1 (28 Nov):** `[ ]` `osmdroid` tampil + `setUserAgentValue` `[ ]` `LocationManager` + `onProviderEnabled/Disabled` `[ ]` Open-Meteo + Cache `[ ]` Room/SQLite Seed aktif
+- **M2 (1 Des):** `[ ]` Shake Detection ($\Delta g > 12$, debounce `1s`) `[ ]` Light Hysteresis (`<10` / `>80` Lux) `[ ]` Compass Bearing (`Qibla` pattern) `[ ]` Hybrid Mood AI + Offline Fallback
+- **M3 (2 Des):** `[ ]` Absen kelas `[ ]` Merge modul Rayhan + Ni'mah + Faqih `[ ]` Uji *smoke test* end-to-end di HP fisik
+- **M4 (6 Des):** `[ ]` `RecyclerView` + Filter + `AlertDialog` Shake `[ ]` `Implicit Intent` rute & share `[ ]` *Live Sensor Monitor Sheet* (`P1-01`) `[ ]` Uji tanpa internet (*airplane mode*)
+- **M5 (7–9 Des):** `[ ]` Freeze APK `v1.0-demo` (7 Des) `[ ]` Selesai 7 Slide PPT & Gladi *scrcpy* (8 Des) `[ ]` Presentasi & Live Demo ke Dosen & Asisten (9 Des)
+
+### 12.3 Jadwal Kerja Harian / Sprint
 
 | Rentang Tanggal | Fase Kerja | Aktivitas & Luaran Terukur | PIC Utama |
 |---|---|---|---|
-| **25 Nov 2026** *(Hari Ini)* | **Lock SSOT & Setup Repo** | Penguncian dokumen `SANTAP-SSOT-v1.1`, pembuatan proyek Android Studio baru (**Java 11 Native** + XML Material 3 + `osmdroid` + `Room`/`SQLite`), serta ekstraksi **30–50 POI kuliner nyata** sekitar kampus via Overpass API. | Seluruh Tim |
-| **26–28 Nov 2026** | **Fondasi Data & Peta (P0)** | Implementasi `Room Database` + pre-populated seed kuliner (`P0-05`), integrasi `GPS` + `OSMDroid MapView` (`P0-01`), dan `Retrofit` ke Open-Meteo API (`P0-02`). | Lead + AI/Data Eng |
-| **29 Nov – 1 Des 2026** | **Integrasi Sensor & AI Core (P0)** | Implementasi `Accelerometer Shake`, `Ambient Light + Hysteresis`, dan `Compass Fusion` dengan 5 Prinsip Emas (`P0-03`); integrasi *Hybrid Mood Analyzer* + *ContextFusionScorer* (`P0-04`). | Sensor Eng + AI/Data Eng |
-| **2 Des 2026** *(Minggu Depan)* | **Absen Kelas & Checkpoint** | Mengikuti absensi kelas sesuai catatan jadwal; tim melakukan **Integrasi Tengah Jalan** menggabungkan Peta + Sensor + AI + Room DB di satu HP fisik. | Seluruh Tim |
-| **3–5 Des 2026** | **UI/UX Material 3 & Fitur P0 Lengkap** | Penyelesaian layar `RecyclerView`, `AlertDialog` hasil *Shake*, layar Detail + Jarum Kompas + `Implicit Intent` (`P0-06`), serta pengujian *Offline Fallback*. | UI/UX & QA + Lead |
-| **6 Des 2026** | **Polishing & Fitur Nilai Tambah (P1)** | Penambahan **Live Sensor Monitor Sheet (`P1-01`)** untuk transparansi demo ke dosen, dan opsional `Step Counter` (`P1-02`) + Riwayat/Favorit (`P1-03`). | Sensor Eng + UI/UX |
-| **7–8 Des 2026** | **Freeze APK, Slide PPT & Gladi Demo** | Pembekuan versi APK final (`v1.0-demo`), penyelesaian **7 Slide PPT**, uji coba *screen mirroring* laptop-ke-HP, dan latihan skenario demo + Q&A. | Seluruh Tim |
-| **9 Des 2026** | **PRESENTASI & LIVE DEMO** | Presentasi PPT (min. 5 slide) dan demonstrasi langsung aplikasi SANTAP berjalan di hadapan Dosen & Asisten. | Seluruh Tim |
+| **25 Nov 2026** *(Hari Ini)* | **M0 — Lock SSOT & Setup Repo** | Penguncian dokumen `SANTAP-SSOT-v1.2`, pembuatan proyek Android Studio baru (**Java 11 Native** + XML Material 3 + `osmdroid` + `Room`/`SQLite`), serta ekstraksi **30–50 POI kuliner nyata** sekitar kampus via Overpass API. | Seluruh Tim |
+| **26–28 Nov 2026** | **M1 — Fondasi Data & Peta (P0)** | Implementasi `Room Database` / `DbHelper` + seed kuliner (`P0-05`), integrasi `GPS` + `OSMDroid MapView` (`P0-01`), dan `Retrofit` ke Open-Meteo API (`P0-02`). | Rayhan + Ni'mah |
+| **29 Nov – 1 Des 2026** | **M2 — Integrasi Sensor & AI Core (P0)** | Implementasi `Accelerometer Shake`, `Ambient Light + Hysteresis`, dan `Compass Fusion` dengan 5 Prinsip Emas (`P0-03`); integrasi *Hybrid Mood Analyzer* + *ContextFusionScorer* (`P0-04`). | Rayhan + Ni'mah |
+| **2 Des 2026** *(Minggu Depan)* | **M3 — Absen Kelas & Checkpoint Integrasi** | Mengikuti absensi kelas sesuai catatan jadwal; tim melakukan **Integrasi Tengah Jalan** menggabungkan Peta + Sensor + AI + Database di satu HP fisik. | Seluruh Tim |
+| **3–5 Des 2026** | **M4 (Awal) — UI/UX Material 3 & Fitur P0 Lengkap** | Penyelesaian layar `RecyclerView`, `AlertDialog` hasil *Shake*, layar Detail + Jarum Kompas + `Implicit Intent` (`P0-06`), serta pengujian *Offline Fallback*. | Faqih + Rayhan |
+| **6 Des 2026** | **M4 (Akhir) — Polishing & Fitur Nilai Tambah (P1)** | Penambahan **Live Sensor Monitor Sheet (`P1-01`)** untuk transparansi demo ke dosen, dan opsional `Step Counter` (`P1-02`) + Riwayat/Favorit (`P1-03`). | Rayhan + Faqih |
+| **7–8 Des 2026** | **M5 (Persiapan) — Freeze APK, Slide PPT & Gladi Demo** | Pembekuan versi APK final (`v1.0-demo`), penyelesaian **7 Slide PPT**, uji coba *screen mirroring* laptop-ke-HP, dan latihan skenario demo + Q&A. | Faqih + Seluruh Tim |
+| **9 Des 2026** | **M5 (Puncak) — PRESENTASI & LIVE DEMO** | Presentasi PPT (min. 5 slide) dan demonstrasi langsung aplikasi SANTAP berjalan di hadapan Dosen & Asisten. | Seluruh Tim |
 
 ---
 
@@ -513,7 +542,7 @@ Keterangan komponen ($0 \le S_i \le 100$):
 
 | Slide | Judul Slide | Poin Konten Inti *(Menjawab: Membuat Apa, Tujuan, & Sensor yang Dipakai)* |
 |:-:|:---|:---|
-| **1** | **Sampul & Identitas** | Nama Proyek: **SANTAP** (*Sistem Analisis Tempat Makan Berdasarkan Atmosfer & Perasaan*), Tagline (*"Pilih Tempat Makan Sesuai Cuaca & Mood Tanpa Bingung"*), Daftar Nama & NRP Anggota Kelompok. |
+| **1** | **Sampul & Identitas** | Nama Proyek: **SANTAP** (*Sistem Analisis Tempat Makan Berdasarkan Atmosfer & Perasaan*), Tagline (*"Pilih Tempat Makan Sesuai Cuaca & Mood Tanpa Bingung"*), Anggota Kelompok: **M. Faqih Ridho (`5027241123`, Lead)**, **Rayhan Agnan Kusuma (`502724101`)**, **Ni'mah Fauziyyah Atok (`502724102`)**. |
 | **2** | **Latar Belakang & Tujuan** | • Masalah nyata: *Decision fatigue* & *choice overload* (`Iyengar & Lepper, 2000`; `Olsen et al., 2017`) serta keterbatasan peta konvensional yang abai terhadap emosi (`Gibson, 2006`) dan lingkungan (`Biswas et al., 2017`).<br>• **Tujuan SANTAP:** Mempercepat pengambilan keputusan kuliner yang personal, kontekstual, dan mendukung eksposur UMKM lokal. |
 | **3** | **Apa yang Kami Buat? (Konsep 5W+1H)** | Penjelasan ringkas aplikasi Android Native **SANTAP**: menggabungkan konteks lokasi, cuaca *real-time*, pencahayaan sekitar, serta input *mood* pengguna ke dalam **Dynamic Mood-Map** berkode warna dan rekomendasi instan. |
 | **4** | **Sensor Android & Peta yang Digunakan** | Visualisasi ikon & fungsi **4 Sensor Inti + 1 Opsional**:<br>1. **GPS + OpenStreetMap (`osmdroid`)** [Wajib]<br>2. **Accelerometer** (*Shake-to-SANTAP*, $\Delta g > 12$, debounce `1000 ms`)<br>3. **Ambient Light (`TYPE_LIGHT`)** (Konteks terik/redup + *Auto Dark Mode Hysteresis*)<br>4. **Magnetometer + Accelerometer** (*Digital Compass* arah restoran)<br>5. *(Opsional)* **Step Counter** + Kepatuhan **5 Prinsip Emas Sensor Kuliah**. |
