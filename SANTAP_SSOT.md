@@ -1,3 +1,4 @@
+
 # SANTAP — Single Source of Truth (SSOT)
 
 > **Sistem Analisis Tempat Makan Berdasarkan Atmosfer & Perasaan (*Context-Aware Culinary Recommendation App for Android*)**
@@ -8,11 +9,12 @@
 
 | Atribut Dokumen | Detail |
 |---|---|
-| **Kode & Versi Dokumen** | `SANTAP-SSOT-v1.2` |
-| **Status Penguncian** | **LOCKED SSOT v1.2** *(Identitas tim 3 anggota terkunci; Bahasa: **Java Native (Java 11)** — Acuan resmi kode Android Studio, Milestone, PPT, dan Live Demo)* |
-| **Tanggal Pembaruan Terakhir** | 25 November 2026 |
+| **Kode & Versi Dokumen** | `SANTAP-SSOT-v1.3` |
+| **Status Penguncian** | **LOCKED SSOT v1.3** *(Diselaraskan dengan diagram alur resmi folder `Rancangan`; Identitas tim 3 anggota terkunci; Bahasa: **Java Native (Java 11)** — Acuan resmi kode Android Studio, Milestone, PPT, dan Live Demo)* |
+| **Tanggal Pembaruan Terakhir** | 27 November 2026 |
 | **Mata Kuliah & Penugasan** | Final Project Pemrograman Mobile (Semester 5 — Android Studio Native) |
 | **Jadwal Presentasi & Demo** | **9 Desember 2026** di hadapan Dosen & Asisten *(Catatan jadwal: pertemuan 2 Desember 2026 hanya absen)* |
+| **Dokumen Rancangan Alur** | [alur aplikasi santap.jpeg](file:///d:/Institut%20Teknologi%20Sepuluh%20Nopember/Semester%205/Pemrograman%20Mobile/Final%20Project/Rancangan/alur%20aplikasi%20santap.jpeg) & [alur_aplikasi_santap.drawio (1).xml](file:///d:/Institut%20Teknologi%20Sepuluh%20Nopember/Semester%205/Pemrograman%20Mobile/Final%20Project/Rancangan/alur_aplikasi_santap.drawio%20(1).xml) |
 | **Dokumen Sumber Konsep** | [Analisis 5W+1H Aplikasi SANTAP](file:///c:/Users/rayha/OneDrive/Documents/SEMESTER%205/5.%20Pemrograman%20Mobile/FP%20PEMMOB/Analisis%205W+1H%20Aplikasi%20SANTAP%20(Sistem%20Analisis%20Tempat%20Makan%20Berdasarkan%20Atmosfer%20&%20Perasaan).md) |
 | **Acuan Praktikum Kuliah** | [Tugas7Sensor README.md](file:///c:/Users/rayha/OneDrive/Documents/SEMESTER%205/5.%20Pemrograman%20Mobile/2.%20Tugas/Tugas7Sensor/README.md) & Modul `GPSAPP` (`osmdroid-android`) |
 
@@ -31,6 +33,7 @@
 | `v1.0` | 25 Nov 2026 | Penyelarasan penuh konsep SANTAP menjadi proyek **Android Studio Native** untuk Final Project Pemrograman Mobile: penguncian 4 sensor inti + 1 sensor bonus, peta **OpenStreetMap (`osmdroid`)**, Room DB sebagai SSOT klien, pengayaan 9 jurnal ilmiah ber-DOI & 5 sumber dataset (Kaggle/IndoNLU/Open Data), serta penyusunan blueprint 7 slide PPT & skenario Live Demo 9 Desember 2026. |
 | `v1.1` | 25 Nov 2026 | **Penguncian Bahasa Java Native (Java 11)** sesuai kesepakatan tim: pembaruan arsitektur MVVM ke `LiveData` + `ExecutorService` (menggantikan `StateFlow`), dukungan opsi Room Java `annotationProcessor` / `SQLiteOpenHelper`, penyelarasan detail teknis `osmdroid` (`setUserAgentValue`, `LocationListener`, default koordinat Surabaya) dari `GPSAPP`, serta penambahan `ADR-006` (*Code Pattern Reuse* dari `Tugas7Sensor`). |
 | `v1.2` | 25 Nov 2026 | Pengisian identitas resmi **3 anggota kelompok** (`Rayhan Agnan Kusuma`, `Ni'mah Fauziyyah Atok`, `M. Faqih Ridho`), penyeimbangan ulang PIC fitur pada Scope Triage, serta penambahan **Peta Milestone (`M0`–`M5`) & Checklist Eksekusi** di Bagian 12 menuju demo 9 Desember 2026. |
+| `v1.3` | 27 Nov 2026 | **Penyelarasan Penuh dengan Diagram Folder `Rancangan` (`alur aplikasi santap.jpeg` & `.drawio.xml`):** (1) Penambahan alur **Splash Screen $\to$ Cek Sesi Login $\to$ Halaman Login & Register (dengan Preferensi Makanan Awal) $\to$ Dashboard Utama (Home SANTAP)**; (2) Penguncian **5 Fitur Utama** (Fitur 1: Analisis Mood & Rekomendasi AI, Fitur 2: Peta Kuliner & Kompas Arah, Fitur 3: Dashboard Sensor & Atmosfer, Fitur 4: Favorit & Riwayat Kuliner + Beri Tag Suasana, Fitur 5: Profil & Pengaturan Akun); (3) Penyesuaian **Auto-Init Sensor Latar Belakang (`onResume`/`onPause`)** untuk GPS/Map $\to$ Lokasi & Cuaca Open-Meteo; (4) Penyelarasan parameter konteks **Mood + Cuaca + Siang/Malam** (`TYPE_LIGHT` + indikator Siang/Malam) serta fungsi **Kocok HP (Shake)** untuk *Acak Ulang Rekomendasi AI / Reset Filter*. |
 
 ---
 
@@ -62,10 +65,10 @@
 |---|---|
 | **Nama Aplikasi** | **SANTAP** (*Sistem Analisis Tempat Makan Berdasarkan Atmosfer & Perasaan*) |
 | **Platform & IDE** | **Android Native** — Android Studio (**Java 11 / Java Native**, XML Views + Material Design 3, `minSdk 24`) |
-| **Peta & Geolokasi** | **OpenStreetMap** melalui pustaka `osmdroid-android` + `LocationManager` / `LocationListener` (`onProviderEnabled`/`Disabled`, `removeUpdates` di `onPause`, koordinat awal Surabaya `-7.2575, 112.7521` selaras dengan modul kelas `GPSAPP`) |
-| **Sensor Terintegrasi** | **4 Sensor Inti + 1 Sensor Bonus:** (1) GPS/Location, (2) Accelerometer (`TYPE_ACCELEROMETER`), (3) Ambient Light (`TYPE_LIGHT`), (4) Digital Compass Fusion (`TYPE_ACCELEROMETER` + `TYPE_MAGNETIC_FIELD`), dan (5) Step Counter (`TYPE_STEP_COUNTER` — P1) |
-| **Mesin Konteks & AI** | Hybrid Engine: **Open-Meteo Weather API** + **LLM API (Gemini / Groq)** dengan **Offline Lexicon & Deterministic Scorer Fallback** (`ExecutorService` + `LiveData`) |
-| **Penyimpanan Lokal (SSOT)** | **Room Database** (`annotationProcessor` Java, dengan alternatif sah `SQLiteOpenHelper` / `DbHelper.java` sesuai `Tugas 4–6`) berisi *pre-populated seed* kuliner + log sesi mood & rekomendasi |
+| **Peta & Geolokasi** | **OpenStreetMap** melalui pustaka `osmdroid-android` + `LocationManager` / `LocationListener` (`Auto Init` saat `onResume()` untuk Lokasi & Cuaca Open-Meteo, `removeUpdates`/unregister otomatis di `onPause()` agar hemat baterai, koordinat awal Surabaya `-7.2575, 112.7521` selaras dengan modul kelas `GPSAPP`) |
+| **Sensor Terintegrasi** | **4 Sensor Real-Time + 1 Sensor Bonus:** (1) **Sensor 1: GPS / Map** (Lokasi & Cuaca Open-Meteo), (2) **Sensor 2: Accelerometer** (`TYPE_ACCELEROMETER` — Shake Detection untuk Acak Ulang Rekomendasi AI / Reset Filter), (3) **Sensor 3: Siang/Malam & Ambient Light** (`TYPE_LIGHT` + Konteks Siang/Malam), (4) **Sensor 4: Magnetic Field / Kompas Digital** (`TYPE_MAGNETIC_FIELD` + `TYPE_ACCELEROMETER` — Arah Mata Angin ke Lokasi Makan), dan (5) Step Counter (`TYPE_STEP_COUNTER` — Opsional) |
+| **Mesin Konteks & AI** | Hybrid Engine: **Open-Meteo Weather API** (Suhu, Kondisi Hujan, Siang/Malam) + **LLM API (Gemini / Groq)** dengan **Offline Lexicon & Deterministic Scorer Fallback** (`ExecutorService` + `LiveData`) |
+| **Penyimpanan Lokal (SSOT)** | **Room Database** (`annotationProcessor` Java, dengan alternatif sah `SQLiteOpenHelper` / `DbHelper.java` sesuai `Tugas 4–6`) berisi *pre-populated seed* kuliner, sesi akun & preferensi makanan awal, favorit + tag suasana tempat makan, serta riwayat rekomendasi AI |
 | **Status Keaslian Kode** | Proyek baru untuk Final Project Pemrograman Mobile dengan mengadopsi pola arsitektur sensor & peta yang telah diajarkan di perkuliahan |
 
 ### 1.2 Checklist Kepatuhan Catatan Kelompok Final Project
@@ -83,11 +86,11 @@
 
 ### 1.3 Identitas Anggota Kelompok *(Terkunci — 3 Anggota)*
 
-| Nama Lengkap | NRP | Peran Teknis di SANTAP | Tanggung Jawab Utama *(Tanpa Tumpang Tindih)* |
+| Nama Lengkap | NRP | Peran Teknis di SANTAP | Tanggung Jawab Utama *(Selaras 5 Fitur Rancangan)* |
 |---|---|---|---|
-| **M. Faqih Ridho** | `5027241123` | **Team Lead — UI/UX, Navigasi & QA/PPT** | Koordinasi tim, rancangan UI XML Material Design 3 (`RecyclerView` daftar + filter, halaman Detail, `AlertDialog`, `Implicit Intent` rute & bagikan), pengujian fungsional HP fisik, serta penyusunan 7 slide PPT & orkestrasi presentasi/demo |
-| **Rayhan Agnan Kusuma** | `502724101` | **Map & Multi-Sensor Engineer** | Seluruh modul **GPS & Peta `osmdroid`** (layar `MapFragment` & *marker* skor) serta seluruh modul **Sensor Android** (*Accelerometer Shake*, *Ambient Light Hysteresis*, *Digital Compass Bearing* + jarum kompasnya, *Live Sensor Monitor*, & *5 Prinsip Emas*) |
-| **Ni'mah Fauziyyah Atok** | `502724102` | **AI, Weather API & Local Data Engineer** | Seluruh lapisan data & logika rekomendasi — **Room DB / `SQLiteOpenHelper` (SSOT)**, ekstraksi & kurasi *seed* 30–50 POI kuliner (Overpass/Kaggle), integrasi **Open-Meteo API**, serta **Hybrid Mood-to-Food AI & `ContextFusionScorer`** |
+| **M. Faqih Ridho** | `5027241123` | **Team Lead — Auth, UI/UX, Fitur 4–5 & QA/PPT** | Koordinasi tim, alur **Splash Screen, Login & Register (Preferensi Makanan Awal)**, **Dashboard Utama (Home SANTAP)**, **Fitur 4 (Favorit, Riwayat & Tag Suasana)**, **Fitur 5 (Profil, Kelola Izin Sensor/GPS & Logout)**, `Implicit Intent` rute & bagikan, serta penyusunan 7 slide PPT & orkestrasi demo |
+| **Rayhan Agnan Kusuma** | `502724101` | **Map & Multi-Sensor Engineer (Fitur 2 & 3)** | **Sensor Latar Belakang (`onResume`/`onPause`)**, **Fitur 2 (Peta Kuliner OSMDroid, Pin Warna Skor, Filter Radius/Harga & Kompas Digital Arah Mata Angin `TYPE_MAGNETIC_FIELD`)**, **Sensor 2 Accelerometer Shake** (Acak Ulang Rekomendasi / Reset Filter), serta **Fitur 3 (Dashboard Monitoring 4 Sensor Real-Time & Akurasi Sensor)** |
+| **Ni'mah Fauziyyah Atok** | `502724102` | **AI, Weather API & Local Data Engineer (Fitur 1 & Data)** | **Fitur 1 (Analisis Mood Emoji/Prompt Bahasa Alami ke AI Gemini/Groq & Alasan Kecocokan Mood + Cuaca + Siang/Malam)**, integrasi **Open-Meteo API** (Suhu, Kondisi Hujan, Siang/Malam), serta **Room DB / `SQLiteOpenHelper` (SSOT)** beserta *seed* 30–50 POI kuliner |
 
 ---
 
@@ -126,7 +129,7 @@ Bagian ini mengonsolidasikan konsep dari dokumen awal tim ([Analisis 5W+1H Aplik
 | **WHO** *(Siapa)* | 1. **Mahasiswa & Pekerja Muda:** Mobilitas tinggi, sering makan di luar dengan anggaran tertentu, rentan mengalami *decision fatigue* di sela jam kuliah/kerja.<br>2. **Pendatang & Wisatawan:** Belum hafal kuliner sekitar namun ingin tempat yang cocok dengan cuaca dan *mood* saat itu.<br>3. **Pelaku UMKM Kuliner Lokal:** Warung, kedai, dan kafe lokal mendapat eksposur berdasarkan keunggulan suasana (*indoor/AC*, *berkuah hangat*, *nyaman untuk nugas*) bukan hanya iklan berbayar. | Persona utama & sekunder pada Bagian 6.1. |
 | **WHERE** *(Di mana)* | Diterapkan pada kawasan urban padat kuliner (sekitar kampus, kos mahasiswa, kawasan perkantoran, pusat kota) melalui aplikasi **Android Native** berbasis layanan lokasi GPS & peta OpenStreetMap (`osmdroid`). | Fokus *seed* POI awal 30–50 kuliner nyata di radius area kampus/kota uji (`F-10`). |
 | **WHEN** *(Kapan)* | Digunakan pada jam makan harian (sarapan, makan siang, makan malam, kuliner larut malam), saat terjadi perubahan cuaca mendadak (hujan/panas terik), atau momen emosional tertentu (stres tugas, lelah berjalan, ingin *nongkrong*). | Didukung deteksi waktu sistem & `Sensor.TYPE_LIGHT` + `Open-Meteo`. |
-| **HOW** *(Bagaimana)* | 1. Aplikasi membaca **GPS**, **cuaca Open-Meteo**, dan **cahaya sekitar (`TYPE_LIGHT`)** secara otomatis.<br>2. Pengguna memilih **emoji mood** atau mengetik curhat singkat (misal *"lagi capek dan hujan, pengen yang berkuah murah"*).<br>3. **AI & Context Scorer** menghitung kecocokan kuliner (0–100) lalu memetakan **pin berwarna di OpenStreetMap**.<br>4. Jika masih bingung, pengguna cukup **menggoyangkan HP (*Accelerometer Shake*)** untuk memunculkan 1 rekomendasi terbaik, lalu mengikuti **jarum kompas arah restoran (*Compass Fusion*)** ke lokasi. | Memenuhi seluruh ketentuan sensor & OpenStreetMap (`F-09`). |
+| **HOW** *(Bagaimana)* | 1. Pengguna membuka **Splash Screen**, melakukan **Login / Register** (dengan memilih **Preferensi Makanan Awal**), lalu masuk ke **Dashboard Utama (Home SANTAP)** yang otomatis mengaktifkan sensor latar belakang (`onResume`) untuk **GPS/Map $\to$ Lokasi & Cuaca Open-Meteo** (*unregister* otomatis saat `onPause()`).<br>2. **Fitur 1 (Analisis Mood & Rekomendasi AI):** Pengguna memilih **Mood Cepat via Emoji** (*Stres, Lelah, Senang, Hemat, Lapar*), mengetik keinginan makanan bebas ke AI, atau **Mengocok HP (Shake - `TYPE_ACCELEROMETER`)** untuk mengacak ulang rekomendasi AI / mereset filter, lalu melihat daftar kuliner & alasan kecocokan **Mood + Cuaca + Siang/Malam**.<br>3. **Fitur 2 (Peta Kuliner & Kompas Arah):** Menjelajahi pin kuliner berwarna sesuai skor kecocokan AI, memfilter radius jarak & harga, serta menggunakan **Kompas Digital (`TYPE_MAGNETIC_FIELD`)** untuk melihat arah mata angin ke lokasi makan & navigasi rute terbaik.<br>4. **Fitur 3, 4 & 5:** Memantau suhu, kondisi hujan, siang/malam & status akurasi 4 sensor di **Dashboard Sensor & Atmosfer (Fitur 3)**, mengelola favorit/riwayat & **memberi tag suasana tempat makan (Fitur 4)**, serta mengatur profil, izin sensor/GPS, dan logout di **Profil & Pengaturan Akun (Fitur 5)**. | Memenuhi seluruh ketentuan sensor, OpenStreetMap (`F-09`), & diagram alur `Rancangan`. |
 
 ---
 
@@ -173,13 +176,13 @@ Karena aplikasi Android berjalan untuk kuliner lokal Indonesia dengan kombinasi 
 
 Berdasarkan materi `Android_Studio_Sensor_Kuliah.pptx` dan `Tugas7Sensor`, berikut 4 sensor inti + 1 sensor bonus yang diimplementasikan:
 
-| No | Sensor / API Android | Kategori Materi | Mekanisme Kerja di SANTAP | Nilai Guna Langsung bagi Pengguna |
+| No | Sensor / API Android (Sesuai Rancangan) | Kategori Materi | Mekanisme Kerja di SANTAP | Nilai Guna Langsung bagi Pengguna |
 |:-:|:---|:---|:---|:---|
-| 1 | **GPS / Location** (`LocationManager` + `LocationListener`) + **OSMDroid** | **Wajib FP (GPS/Maps)** | Memanggil `Configuration.getInstance().setUserAgentValue(getPackageName())` sebelum `setContentView()`, menangani `onProviderEnabled`/`onProviderDisabled` + `removeUpdates()` di `onPause()`, menghitung jarak Haversine ke setiap POI, dan merender *marker* pada `MapView` OpenStreetMap (titik awal Surabaya `-7.2575, 112.7521`). | Menampilkan posisi pengguna secara langsung dan menyusun peta kuliner berkode warna skor kecocokan. |
-| 2 | **Accelerometer** (`Sensor.TYPE_ACCELEROMETER`) | **Motion Sensor** *(Studi Kasus 1: Shake Detection)* | Menghitung $\text{Mag} = \sqrt{x^2+y^2+z^2}$ dan $\Delta g = |\text{Mag} - 9.81\text{ m/s}^2|$. Jika $\Delta g > 12.0\text{ m/s}^2$ dan jeda *debounce* $\ge 1000\text{ ms}$, pemicu **Shake-to-SANTAP** aktif. | Solusi cepat anti-*decision fatigue*: cukup goyangkan HP saat bingung memilih, SANTAP langsung memilihkan 1 tempat makan terbaik sesuai konteks saat itu. |
-| 3 | **Ambient Light** (`Sensor.TYPE_LIGHT`) | **Environment Sensor** *(Studi Kasus 3: Auto Dark Mode + Hysteresis)* | Mengukur intensitas cahaya sekitar dalam **Lux** dengan dua fungsi:<br>1. **Konteks Atmosfer:** `> 1000 Lux` menandakan siang terik/outdoor (menaikkan bobot tempat `indoor` & `ber-AC`).<br>2. **Auto Dark Mode + Hysteresis:** `< 10 Lux` aktifkan Dark Mode; `> 80 Lux` aktifkan Light Mode; `10–80 Lux` *deadband* anti-kedip. | Kenyamanan mata otomatis saat dipakai malam/di ruangan redup sekaligus memperkuat akurasi pembacaan atmosfer lingkungan (`F-04`). |
-| 4 | **Digital Compass Fusion** (`TYPE_ACCELEROMETER` + `TYPE_MAGNETIC_FIELD`) | **Position / Sensor Fusion** *(Studi Kasus 4: Digital Compass)* | Memanggil `SensorManager.getRotationMatrix()` dan `getOrientation()` untuk mendapatkan sudut **Azimuth** hadap HP, lalu membandingkannya dengan *bearing* GPS menuju tempat makan terpilih. | Menampilkan **Jarum Kompas Penunjuk Arah Restoran** secara *real-time* di layar detail tempat makan (sangat visual saat didemokan ke dosen!). |
-| 5 | **Step Counter** (`Sensor.TYPE_STEP_COUNTER`) *(P1 Bonus)* | **Activity / Motion Sensor** | Membaca akumulasi langkah kaki (dengan izin `ACTIVITY_RECOGNITION` pada Android 10+) sejak sesi berjalan. | Jika langkah pengguna tinggi/lelah berjalan, SANTAP memprioritaskan kuliner berjarak sangat dekat ($\le 400\text{ m}$). |
+| 1 | **Sensor 1: GPS / Map** (`LocationManager` + `LocationListener`) + **OSMDroid** | **Wajib FP (GPS/Maps)** & **Sensor Latar Belakang (`onResume`)** | Aktif otomatis (*Auto Init*) saat `onResume()` di Dashboard Utama untuk mengambil lokasi & memicu data cuaca **Open-Meteo**, serta wajib `removeUpdates()` (*unregister* otomatis) saat `onPause()` agar hemat baterai. Memanggil `Configuration.getInstance().setUserAgentValue(getPackageName())`, menghitung jarak Haversine ke setiap POI, dan merender pin kuliner berwarna di `MapView` OpenStreetMap (titik awal Surabaya `-7.2575, 112.7521`). | Menampilkan posisi pengguna secara langsung, menyaring radius jarak & harga, serta menyusun peta kuliner berkode warna skor kecocokan AI (**Fitur 2 & 3**). |
+| 2 | **Sensor 2: Accelerometer** (`Sensor.TYPE_ACCELEROMETER`) | **Motion Sensor** *(Studi Kasus 1: Shake Detection)* | Menghitung $\text{Mag} = \sqrt{x^2+y^2+z^2}$ dan $\Delta g = |\text{Mag} - 9.81\text{ m/s}^2|$. Jika $\Delta g > 12.0\text{ m/s}^2$ dan jeda *debounce* $\ge 1000\text{ ms}$, pemicu **Shake Detection** aktif. | **Fitur 1 & 3:** Kocok HP (*Shake*) untuk **mengacak ulang rekomendasi AI / mereset filter** serta menampilkan pilihan tempat makan terbaik anti-*decision fatigue*. |
+| 3 | **Sensor 3: Siang/Malam & Ambient Light** (`Sensor.TYPE_LIGHT` + Indikator `Siang/Malam`) | **Environment Sensor** *(Studi Kasus 3: Light & Day/Night Context)* | Menggabungkan pembacaan intensitas cahaya sekitar (**Lux** dari `TYPE_LIGHT`) dengan status **Siang/Malam** (dari Open-Meteo `is_day` & jam perangkat):<br>1. **Konteks Siang/Malam & Atmosfer:** Menentukan alasan kecocokan kuliner berdasarkan **Mood + Cuaca + Siang/Malam**.<br>2. **Auto Dark Mode + Hysteresis:** `< 10 Lux` aktifkan Dark Mode; `> 80 Lux` aktifkan Light Mode; `10–80 Lux` *deadband* anti-kedip. | **Fitur 1 & 3:** Memantau kondisi **Siang/Malam** secara *real-time* di Dashboard Sensor & Atmosfer serta menyesuaikan rekomendasi tempat makan siang vs malam (`F-04`). |
+| 4 | **Sensor 4: Magnetic Field / Kompas Digital** (`TYPE_MAGNETIC_FIELD` + `TYPE_ACCELEROMETER`) | **Position / Sensor Fusion** *(Studi Kasus 4: Digital Compass)* | Memanggil `SensorManager.getRotationMatrix()` dan `getOrientation()` untuk mendapatkan sudut **Azimuth** mata angin hadap HP, lalu membandingkannya dengan *bearing* GPS menuju lokasi makan terpilih. | **Fitur 2 & 3:** Menggunakan **Kompas Digital** untuk melihat arah mata angin & penunjuk arah *real-time* menuju lokasi tempat makan beserta status akurasi sensornya. |
+| 5 | **Step Counter** (`Sensor.TYPE_STEP_COUNTER`) *(Bonus Opsional)* | **Activity / Motion Sensor** | Membaca akumulasi langkah kaki (dengan izin `ACTIVITY_RECOGNITION` pada Android 10+) sejak sesi berjalan. | Jika langkah pengguna tinggi/lelah berjalan, SANTAP memprioritaskan kuliner berjarak sangat dekat ($\le 400\text{ m}$). |
 
 ### 5.2 Checklist Penerapan 5 Prinsip Emas Perkuliahan Sensor (`F-09`)
 
@@ -203,58 +206,78 @@ Mengacu langsung pada Bagian VII Slide 27 perkuliahan dan `Tugas7Sensor/README.m
 | **2. Pendatang / Wisatawan** | Belum mengenal karakter kuliner lokal di sekitar lokasi menginap atau kunjungan. | Aplikasi peta hanya memberi daftar panjang berdasarkan rating tanpa tahu apakah tempat itu cocok untuk suasana santai, dingin, atau butuh tempat berteduh. | Menemukan kuliner lokal yang paling selaras dengan atmosfer lingkungan dan preferensi spontan mereka. |
 | **3. Pelaku Usaha Kuliner (UMKM)** | Pemilik warung, kedai, atau kafe lokal yang bersaing dengan restoran berjaringan besar. | Kalah visibilitas dari restoran beriklan di aplikasi pesan-antar meskipun menawarkan suasana nyaman atau menu khas cuaca tertentu. | Berpeluang muncul di peringkat atas saat atmosfer & *mood* pengguna cocok dengan profil tempat mereka. |
 
-### 6.2 Diagram Ekosistem Alur Konteks SANTAP
+### 6.2 Diagram Alur Aplikasi SANTAP *(Sesuai Folder `Rancangan`)*
+
+> [!NOTE]
+> Diagram di bawah ini merepresentasikan secara presisi rancangan visual di [alur aplikasi santap.jpeg](file:///d:/Institut%20Teknologi%20Sepuluh%20Nopember/Semester%205/Pemrograman%20Mobile/Final%20Project/Rancangan/alur%20aplikasi%20santap.jpeg) dan [alur_aplikasi_santap.drawio (1).xml](file:///d:/Institut%20Teknologi%20Sepuluh%20Nopember/Semester%205/Pemrograman%20Mobile/Final%20Project/Rancangan/alur_aplikasi_santap.drawio%20(1).xml).
 
 ```mermaid
-flowchart LR
-    subgraph Input ["1. Input Konteks & Pengguna"]
-        GPS["GPS Lokasi + Waktu Lokal"]
-        LIGHT["Ambient Light Sensor (Lux)"]
-        MOOD["Input Mood (Emoji / Teks Curhat)"]
-        SHAKE["Accelerometer (Shake Trigger)"]
-    end
+flowchart TD
+    START(["Buka Aplikasi SANTAP (Splash Screen)"]) --> AUTH{"Sesi Login Aktif?"}
+    AUTH -- "Belum" --> LOGIN["Halaman Login<br/>(Email & Password / Google / Lupa Password)"]
+    LOGIN -- "Belum Punya Akun" --> REG["Halaman Register (Daftar Akun)<br/>(Nama, Email, Password & Pilih Preferensi Makanan Awal)"]
+    AUTH -- "Sudah" --> DASH["DASHBOARD UTAMA (Home SANTAP)"]
+    LOGIN -- "Login Berhasil" --> DASH
+    REG -- "Daftar Berhasil" --> DASH
 
-    subgraph External ["2. Layanan Konteks & Data"]
-        METEO["Open-Meteo Weather API"]
-        AI["Hybrid Mood Analyzer (Gemini/Groq + Offline Lexicon)"]
-        DB[("Room DB SSOT (Seed Kuliner Lokal)")]
-    end
+    DASH -. "Auto Init (onResume)" .-> BG["Sensor Latar Belakang Aktif (onResume):<br/>1. Sensor GPS / Map -> Lokasi & Cuaca (Open-Meteo)<br/>*Unregister otomatis saat onPause() agar hemat baterai"]
 
-    subgraph Output ["3. Pengalaman Pengguna Android"]
-        MAP["Dynamic Mood-Map (OSMDroid Pin Warna)"]
-        PICK["AlertDialog Rekomendasi #1 (Shake-to-SANTAP)"]
-        COMP["Detail + Kompas Arah Restoran (Magnetometer)"]
-    end
+    DASH --> F1["FITUR 1:<br/>Analisis Mood & Rekomendasi AI"]
+    DASH --> F2["FITUR 2:<br/>Peta Kuliner & Kompas Arah"]
+    DASH --> F3["FITUR 3:<br/>Dashboard Sensor & Atmosfer"]
+    DASH --> F4["FITUR 4:<br/>Favorit & Riwayat Kuliner"]
+    DASH --> F5["FITUR 5:<br/>Profil & Pengaturan Akun"]
 
-    GPS --> METEO
-    GPS --> DB
-    LIGHT --> AI
-    MOOD --> AI
-    METEO --> AI
-    DB --> AI
-    AI --> MAP
-    SHAKE --> PICK
-    AI --> PICK
-    MAP --> COMP
-    PICK --> COMP
+    F1 -.-> F1_S["AI Engine (Gemini / Groq API)<br/>+ Sensor 2: Accelerometer (TYPE_ACCELEROMETER - Shake Detection)"]
+    F1_S --> F1_1["1. Pilih Mood Cepat via Emoji (Stres, Lelah, Senang, Hemat, Lapar)"]
+    F1_1 --> F1_2["2. Ketik Keinginan Makanan Bebas (Prompt Bahasa Alami ke AI)"]
+    F1_2 --> F1_3["3. Kocok HP (Shake) untuk Acak Ulang Rekomendasi AI / Reset Filter"]
+    F1_3 --> F1_4["4. Lihat Daftar Kuliner & Alasan Kecocokan Mood + Cuaca + Siang/malam"]
+
+    F2 -.-> F2_S["Sensor 1: GPS / Map (OSMDroid / OSM)<br/>+ Sensor 4: Magnetic Field (TYPE_MAGNETIC_FIELD - Kompas Digital)"]
+    F2_S --> F2_1["1. Jelajahi Pin Kuliner Berwarna Sesuai Skor Kecocokan AI"]
+    F2_1 --> F2_2["2. Filter Radius Jarak dan Harga"]
+    F2_2 --> F2_3["3. Gunakan Kompas Digital untuk Melihat Arah Mata Angin ke Lokasi Makan"]
+    F2_3 --> F2_4["4. Lihat Detail Restoran & Mulai Navigasi Rute Terbaik"]
+
+    F3 -.-> F3_S["Monitoring 4 Sensor Real-Time<br/>(GPS, Accelerometer, Siang/malam, Magnetic Field)<br/>+ Data Cuaca Open-Meteo API"]
+    F3_S --> F3_1["1. Pantau Suhu, Kondisi Hujan, Siang/malam"]
+    F3_1 --> F3_2["2. Lihat Status & Tingkat Akurasi Keempat Sensor Perangkat"]
+
+    F4 --> F4_1["1. Simpan / Hapus Daftar Tempat Makan Favorit Pengguna"]
+    F4_1 --> F4_2["2. Lihat Riwayat Rekomendasi AI Berdasarkan Mood & Cuaca Lalu"]
+    F4_2 --> F4_3["3. Beri Tag Suasana Tempat Makan"]
+
+    F5 --> F5_1["1. Ubah Username & Foto Profil"]
+    F5_1 --> F5_2["2. Ubah Password & Alamat Email"]
+    F5_2 --> F5_3["3. Kelola Izin Sensor / GPS & Logout (Kembali ke Halaman Login)"]
 ```
 
-### 6.3 Alur Kerja Utama (*Core User Journeys*)
+### 6.3 Alur Kerja Utama (*Core User Journeys — Selaras 5 Fitur Rancangan*)
 
-#### Journey A — Pencarian Kuliner Berbasis Atmosfer & Mood (*Core Flow — P0*)
-1. Pengguna membuka SANTAP dan memberikan izin lokasi GPS (`ACCESS_FINE_LOCATION`).
-2. Aplikasi otomatis mengambil posisi di **Peta OpenStreetMap (`osmdroid`)**, membaca **intensitas cahaya (`TYPE_LIGHT`)** + waktu sistem, dan mengambil **cuaca terkini dari Open-Meteo** (ditampilkan di *Context Chip Banner*: misal `"26°C • Hujan Ringan • Cahaya Redup • Malam"`).
-3. Pengguna memilih **Emoji Mood** cepat (*Lapar Berat, Stres/Butuh Nyaman, Santai/Nugas, Gerah/Butuh Segar, Hemat Akhir Bulan*) atau mengetikkan perasaan singkat di kolom teks (misal *"capek abis praktikum, pengen yang berkuah hangat"*).
-4. **Hybrid Mood Analyzer & Context Scorer** menilai seluruh POI kuliner di **Room DB** lalu memperbarui peta dengan pin berkode warna (Hijau = Sangat Cocok $\ge 75$, Kuning = Cukup Cocok $50–74$, Abu-abu = Alternatif $< 50$) serta daftar terurut di tab *Rekomendasi*.
+#### Journey 0 — Splash Screen, Autentikasi & Auto-Init Sensor Latar Belakang
+1. Pengguna membuka aplikasi SANTAP (**Splash Screen**), lalu sistem memeriksa apakah **Sesi Login Aktif**.
+2. Jika belum aktif, pengguna masuk ke **Halaman Login** (*Input Email & Password*, *Login via Google*, *Lupa Password*) atau berpindah ke **Halaman Register** (*Input Nama, Email & Password* serta **Pilih Preferensi Makanan Awal**).
+3. Setelah sesi aktif, pengguna masuk ke **DASHBOARD UTAMA (Home SANTAP)**. Saat `onResume()`, aplikasi otomatis menginisialisasi **Sensor GPS / Map** untuk mendapatkan lokasi & cuaca terkini dari **Open-Meteo**, dan otomatis melakukan *unregister* saat `onPause()` agar hemat baterai.
 
-#### Journey B — *Shake-to-SANTAP* Anti Decision Fatigue (*Core Sensor Flow — P0*)
-1. Saat pengguna masih ragu memilih dari daftar, pengguna cukup **menggoyangkan HP** (`Accelerometer` mendeteksi $\Delta g > 12.0\text{ m/s}^2$ dengan debounce `1000 ms`).
-2. Sistem bergetar singkat/memberi umpan balik visual lalu memunculkan **`AlertDialog` / `BottomSheet` Pilihan Terbaik #1**, lengkap dengan skor kecocokan, alasan AI (*"Cocok karena cuaca hujan dan mood butuh yang hangat, hanya 320 m dari posisimu"*), serta tombol **"Arahkan dengan Kompas"** atau **"Buka Rute"**.
+#### Journey 1 (FITUR 1) — Analisis Mood & Rekomendasi AI + *Shake Detection* (`P0`)
+1. Pengguna memilih **Mood Cepat via Emoji** (*Stres, Lelah, Senang, Hemat, Lapar*) atau mengetikkan **Keinginan Makanan Bebas** (*Prompt Bahasa Alami ke AI* Gemini/Groq, dengan *fallback* kamus lokal).
+2. Pengguna dapat **Mengocok HP (*Shake* — Sensor 2: `TYPE_ACCELEROMETER`)** dengan $\Delta g > 12.0\text{ m/s}^2$ (debounce `1000 ms`) untuk **mengacak ulang rekomendasi AI / mereset filter** atau mengambil rekomendasi pilihan teratas secara cepat.
+3. Aplikasi menampilkan **Daftar Kuliner & Alasan Kecocokan** berdasarkan perpaduan **Mood + Cuaca + Siang/Malam**.
 
-#### Journey C — Navigasi Kompas Arah & Rincian Tempat Makan (*Core Sensor Flow — P0*)
-1. Pengguna memilih salah satu tempat makan (dari pin peta, daftar `RecyclerView`, atau dialog *Shake*).
-2. Layar detail menampilkan foto/ikon kategori, profil atmosfer (`Indoor`, `AC`, `Kisaran Harga`, `Jarak`), alasan kecocokan kontekstual, serta **Kompas Penunjuk Arah Real-Time** (berbasis `TYPE_ACCELEROMETER` + `TYPE_MAGNETIC_FIELD`) yang jarumnya selalu menunjuk ke arah restoran ketika pengguna memutar badan/HP.
-3. Tombol **"Navigasi Eksternal"** memicu *Implicit Intent* (`Intent.ACTION_VIEW` dengan URI `geo:lat,lon?q=...`) untuk membuka rute jalan di aplikasi peta perangkat, dan tombol **"Bagikan"** memicu *Implicit Intent* (`Intent.ACTION_SEND`) ke WhatsApp/pesan.
+#### Journey 2 (FITUR 2) — Peta Kuliner & Kompas Arah (`P0`)
+1. Pengguna membuka peta interaktif OpenStreetMap (**Sensor 1: GPS / Map**) dan menjelajahi **Pin Kuliner Berwarna** sesuai skor kecocokan AI (Hijau $\ge 75$, Kuning $50–74$, Abu-abu $< 50$).
+2. Pengguna dapat menyaring tempat makan menggunakan **Filter Radius Jarak dan Harga**.
+3. Pengguna menggunakan **Kompas Digital (Sensor 4: `TYPE_MAGNETIC_FIELD` + `TYPE_ACCELEROMETER`)** untuk melihat **arah mata angin & jarum penunjuk arah** menuju lokasi makan.
+4. Pengguna membuka **Detail Restoran** dan menekan tombol **Mulai Navigasi Rute Terbaik** (*Implicit Intent* `geo:lat,lon?q=...`).
+
+#### Journey 3 (FITUR 3) — Dashboard Sensor & Atmosfer (`P0/P1`)
+1. Pengguna membuka **Dashboard Sensor & Atmosfer** yang memonitor **4 Sensor Real-Time** (*GPS, Accelerometer, Siang/Malam [`TYPE_LIGHT`], Magnetic Field*) bersama data **Open-Meteo API**.
+2. Pengguna memantau **Suhu, Kondisi Hujan, dan status Siang/Malam** saat itu, serta melihat **Status & Tingkat Akurasi Keempat Sensor Perangkat** secara transparan.
+
+#### Journey 4 & 5 (FITUR 4 & FITUR 5) — Favorit, Riwayat, Tag Suasana & Profil Akun (`P1`)
+1. Pada **Fitur 4 (Favorit & Riwayat Kuliner)**: Pengguna dapat menyimpan/menghapus daftar tempat makan favorit, melihat riwayat rekomendasi AI berdasarkan mood & cuaca lalu, serta **memberi Tag Suasana Tempat Makan**.
+2. Pada **Fitur 5 (Profil & Pengaturan Akun)**: Pengguna dapat mengubah *Username & Foto Profil*, mengubah *Password & Alamat Email*, serta **mengelola izin Sensor/GPS & Logout** kembali ke Halaman Login.
 
 ### 6.4 Analisis Perbandingan Jujur terhadap Solusi Eksisting
 
@@ -268,67 +291,80 @@ flowchart LR
 
 ## 7. Cakupan Fitur, Scope Triage (P0 / P1 / P2), dan Batasan Ruang Lingkup
 
-Untuk memastikan aplikasi berjalan 100% stabil saat **Live Demo 9 Desember 2026** dalam jendela waktu pengerjaan 14 hari, seluruh fitur diklasifikasikan ketat:
+Seluruh fitur dari diagram alur pada folder `Rancangan` ([alur aplikasi santap.jpeg](file:///d:/Institut%20Teknologi%20Sepuluh%20Nopember/Semester%205/Pemrograman%20Mobile/Final%20Project/Rancangan/alur%20aplikasi%20santap.jpeg)) dipetakan ke dalam prioritas pengerjaan menuju **Live Demo 9 Desember 2026** (termasuk klasifikasi legenda **"Kalau sempet"** pada diagram):
 
-| ID Fitur | Prioritas | Nama Fitur & Spesifikasi Singkat | PIC Utama | Target Selesai |
+| ID Fitur | Prioritas | Pilar Rancangan & Spesifikasi Fitur | PIC Utama | Target Selesai |
 |---|---|---|---|---|
-| `P0-01` | **P0 (Wajib Demo)** | **OSMDroid Dynamic Mood-Map & GPS Tracker:** Peta OpenStreetMap interaktif (`setUserAgentValue` sebelum `setContentView`, koordinat default Surabaya `-7.2575, 112.7521`), `LocationManager` + `LocationListener` (`onProviderEnabled/Disabled`, `removeUpdates` di `onPause`), *marker* warna skor, plus tombol *Fallback Lokasi Demo Kampus*. | Rayhan | 30 Nov 2026 |
-| `P0-02` | **P0 (Wajib Demo)** | **Open-Meteo Real-Time Weather & Cache:** Pengambilan suhu, curah hujan, dan kode cuaca otomatis per koordinat GPS via Retrofit + penyimpanan cache lokal di SharedPreferences/Room. | Ni'mah | 29 Nov 2026 |
-| `P0-03` | **P0 (Wajib Demo)** | **Multi-Sensor Engine (3+ Sensor Kuliah):**<br>• `Accelerometer`: *Shake-to-SANTAP* ($\Delta g > 12.0$, debounce `1000 ms`)<br>• `Ambient Light`: Klasifikasi Lux lingkungan + *Auto Dark Mode Hysteresis* (`<10` / `>80` Lux)<br>• `Magnetometer + Accelerometer`: *Digital Compass* penunjuk arah restoran (*bearing* vs *azimuth*)<br>Mematuhi 5 Prinsip Emas Sensor. | Rayhan | 1 Des 2026 |
-| `P0-04` | **P0 (Wajib Demo)** | **Hybrid Mood-to-Food AI & Context Scorer:** Analisis emoji & teks bebas Bahasa Indonesia memakai Gemini/Groq API terstruktur **plus** *Offline Lexicon & Weighted Context Scorer* (berbasis IndoNLU & Kaggle `Food choices`) agar tetap jalan tanpa internet. | Ni'mah | 3 Des 2026 |
-| `P0-05` | **P0 (Wajib Demo)** | **Room Database SSOT (`annotationProcessor`) & Local Culinary Seed:** Skema Room Java (`places`, `mood_sessions`, `recommendation_logs`) — atau `SQLiteOpenHelper` (`DbHelper.java`) sesuai pola `Tugas 4–6` — berisi minimal **30–50 kuliner nyata sekitar kampus/kota uji** hasil ekstraksi Overpass API + kurasi atribut atmosfer. | Ni'mah | 28 Nov 2026 |
-| `P0-06` | **P0 (Wajib Demo)** | **Material 3 UI, List/Filter, Dialog & Implicit Intent:** Bottom Navigation (`Daftar`, `Detail`), `RecyclerView` + filter harga/radius, `AlertDialog` hasil *Shake*, serta *Implicit Intent* buka rute & bagikan rekomendasi. | Faqih | 5 Des 2026 |
-| `P1-01` | **P1 (Nilai Tambah)** | **Live Sensor Monitor Sheet:** *BottomSheet* ringkas yang menampilkan angka *real-time* GPS, $\Delta g$ Accelerometer, Lux Cahaya, dan Azimuth Kompas — sangat membantu membuktikan ke dosen & asisten bahwa seluruh sensor benar-benar aktif! | Rayhan | 6 Des 2026 |
-| `P1-02` | **P1 (Nilai Tambah)** | **Step Counter Fatigue Modifier (`TYPE_STEP_COUNTER`):** Membaca jumlah langkah kaki (izin `ACTIVITY_RECOGNITION`) untuk otomatis memprioritaskan kuliner terdekat ($\le 400\text{ m}$) saat pengguna sudah banyak berjalan. | Rayhan | 6 Des 2026 |
-| `P1-03` | **P1 (Nilai Tambah)** | **Riwayat Sesi Mood & Tempat Favorit:** Daftar riwayat pencarian suasana hati dan *bookmark* tempat makan favorit di Room DB. | Faqih | 7 Des 2026 |
-| `P2-01` | **P2 (Roadmap)** | **Backend Cloud PostgreSQL (PostGIS) & Crowdsourcing UMKM:** Sinkronisasi katalog kuliner dinamis antar pengguna dan dasbor mitra UMKM. | Pasca-FP | Pasca-9 Des |
-| `P2-02` | **P2 (Roadmap)** | **Versi Lintas Platform (PWA / iOS) & Fine-Tuned TFLite Model:** Model klasifikasi emosi *on-device* berbasis IndoBERT-lite/TFLite. | Pasca-FP | Pasca-9 Des |
+| `P0-01` | **P0 (Wajib Demo)** | **FITUR 2 — Peta Kuliner & Kompas Arah (`Sensor 1: GPS/Map` & `Sensor 4: Magnetic Field`):**<br>• Auto-init GPS/Map saat `onResume()` & *unregister* saat `onPause()`<br>• Jelajahi Pin Kuliner Berwarna sesuai skor kecocokan AI di `osmdroid` (`-7.2575, 112.7521`)<br>• Filter Radius Jarak dan Harga<br>• Kompas Digital (`TYPE_MAGNETIC_FIELD` + `TYPE_ACCELEROMETER`) melihat arah mata angin ke lokasi makan<br>• Lihat Detail Restoran & Mulai Navigasi Rute Terbaik (*Implicit Intent*). | Rayhan | 30 Nov 2026 |
+| `P0-02` | **P0 (Wajib Demo)** | **Open-Meteo Real-Time Weather & Day/Night Context:** Pengambilan Suhu, Kondisi Hujan, dan status **Siang/Malam** otomatis per koordinat GPS via Retrofit + penyimpanan cache lokal di SharedPreferences/Room. | Ni'mah | 29 Nov 2026 |
+| `P0-03` | **P0 (Wajib Demo)** | **FITUR 3 — Dashboard Sensor & Atmosfer (Monitoring 4 Sensor Real-Time):**<br>• Monitoring 4 Sensor Real-Time: **GPS**, **Accelerometer**, **Siang/Malam (`TYPE_LIGHT` + Jam/Cuaca)**, **Magnetic Field** + Cuaca Open-Meteo<br>• Pantau Suhu, Kondisi Hujan, dan Siang/Malam<br>• Lihat Status & Tingkat Akurasi Keempat Sensor Perangkat (mematuhi 5 Prinsip Emas Sensor). | Rayhan | 1 Des 2026 |
+| `P0-04` | **P0 (Wajib Demo)** | **FITUR 1 — Analisis Mood & Rekomendasi AI + `Sensor 2: Accelerometer (Shake)`:**<br>• Pilih Mood Cepat via Emoji (*Stres, Lelah, Senang, Hemat, Lapar*)<br>• Ketik Keinginan Makanan Bebas (*Prompt Bahasa Alami ke AI Gemini/Groq* + *Offline Lexicon Fallback*)<br>• **Kocok HP (Shake)** untuk **Acak Ulang Rekomendasi AI / Reset Filter** ($\Delta g > 12.0$, debounce `1000 ms`)<br>• Lihat Daftar Kuliner & Alasan Kecocokan **Mood + Cuaca + Siang/Malam**. | Ni'mah + Rayhan | 3 Des 2026 |
+| `P0-05` | **P0 (Wajib Demo)** | **Room Database SSOT (`annotationProcessor`) & Local Culinary Seed:** Skema Room Java (`users`, `places`, `mood_sessions`, `recommendation_logs`, `favorite_places`) berisi minimal **30–50 kuliner nyata sekitar kampus/kota uji** hasil ekstraksi Overpass API + atribut suasana. | Ni'mah | 28 Nov 2026 |
+| `P0-06` | **P0 (Wajib Demo)** | **Splash Screen, Auth (Login/Register Lokal) & Dashboard Utama (Home SANTAP):**<br>• Splash Screen $\to$ Cek Sesi Login Aktif (`SharedPreferences`)<br>• Halaman Login (Email & Password) & Halaman Register (Nama, Email, Password + **Pilih Preferensi Makanan Awal**)<br>• Navigasi utama ke 5 Fitur di Dashboard Utama (Home SANTAP). | Faqih | 4 Des 2026 |
+| `P1-01` | **P1 (Nilai Tambah)** | **FITUR 4 — Favorit & Riwayat Kuliner:**<br>• Simpan / Hapus Daftar Tempat Makan Favorit Pengguna<br>• Lihat Riwayat Rekomendasi AI Berdasarkan Mood & Cuaca Lalu<br>• **Beri Tag Suasana Tempat Makan** (disimpan di Room DB). | Faqih | 6 Des 2026 |
+| `P1-02` | **P1 / "Kalau Sempet"** | **FITUR 5 — Profil & Pengaturan Akun + Opsi Auth Tambahan:**<br>• Ubah Username & Foto Profil; Ubah Password & Alamat Email (Lokal)<br>• Kelola Izin Sensor / GPS & Logout (Kembali ke Halaman Login)<br>• *(Kategori "Kalau sempet" di legenda Rancangan)*: Tombol UI Login via Google / Lupa Password & bonus `TYPE_STEP_COUNTER`. | Faqih + Rayhan | 7 Des 2026 |
+| `P2-01` | **P2 (Roadmap)** | **Backend Cloud PostgreSQL (PostGIS) & Crowdsourcing UMKM:** Sinkronisasi akun/katalog kuliner lintas perangkat di server cloud dan dasbor mitra UMKM. | Pasca-FP | Pasca-9 Des |
 
-### Batasan Ruang Lingkup (*Explicitly Out-of-Scope* untuk Demo 9 Desember)
-- Sistem autentikasi/login akun kompleks dan pengelolaan profil pengguna di server cloud.
-- Integrasi pemesanan makanan daring, pelacakan kurir, atau gerbang pembayaran (*payment gateway*).
-- Pengiriman permintaan *real-time* terus-menerus ke Overpass API setiap detik (diganti dengan *local seed* Room DB agar stabil dan cepat).
+### Batasan Ruang Lingkup (*Scope Boundaries* untuk Demo 9 Desember)
+- **Autentikasi & Profil Berbasis Penyimpanan Lokal On-Device:** Sesuai diagram `Rancangan`, fitur **Login, Register (beserta Preferensi Makanan Awal), dan Fitur 5 (Profil & Pengaturan Akun)** diimplementasikan menggunakan penyimpanan lokal (`Room Database` & `SharedPreferences`) agar 100% cepat dan bebas risiko gagal server saat demo; opsi lanjutan seperti OAuth Google Cloud penuh atau *reset email server* masuk ke kategori legenda **"Kalau sempet"**.
+- Integrasi pemesanan makanan daring (*delivery*), pelacakan kurir, atau gerbang pembayaran (*payment gateway*) berada di luar ruang lingkup aplikasi.
+- Pengiriman permintaan *real-time* terus-menerus ke Overpass API setiap detik diganti dengan *local seed* Room DB (30–50 POI) yang dapat diberi **Tag Suasana** oleh pengguna (**Fitur 4**).
 
 ---
 
 ## 8. Arsitektur Teknis Android & Architecture Decision Log (ADR)
 
-### 8.1 Diagram Arsitektur MVVM + Local SSOT
+### 8.1 Diagram Arsitektur MVVM + Local SSOT *(5 Fitur Rancangan)*
 
 ```mermaid
 flowchart TB
     subgraph Presentation ["1. Presentation Layer (Java 11 + Material Design 3)"]
-        MAP_UI["MapFragment (OSMDroid MapView + Mood Input)"]
-        LIST_UI["RecommendationListFragment (RecyclerView + Filter)"]
-        DET_UI["PlaceDetailActivity (Compass Needle + Implicit Intent)"]
+        AUTH_UI["SplashActivity -> LoginActivity & RegisterActivity (Preferensi Makanan Awal)"]
+        DASH_UI["MainActivity / Dashboard Utama (Home SANTAP)"]
+        F1_UI["Fitur 1: MoodAnalysisFragment (Emoji, Prompt AI, Shake Acak Ulang/Reset, Alasan Mood+Cuaca+Siang/Malam)"]
+        F2_UI["Fitur 2: MapCompassFragment & PlaceDetailActivity (Pin Warna Skor, Filter Radius/Harga, Kompas Digital)"]
+        F3_UI["Fitur 3: SensorDashboardFragment (Monitoring 4 Sensor Real-Time, Suhu/Hujan/Siang-Malam, Akurasi Sensor)"]
+        F4_UI["Fitur 4: FavoriteHistoryFragment (Favorit, Riwayat Rekomendasi AI, Tag Suasana Tempat Makan)"]
+        F5_UI["Fitur 5: ProfileSettingsFragment (Username/Foto, Password/Email, Kelola Izin Sensor/GPS & Logout)"]
         VM["SantapViewModel (LiveData + ExecutorService)"]
     end
 
-    subgraph Hardware ["2. Hardware & Sensor Layer (5 Prinsip Emas)"]
-        LOC["LocationHelper (LocationManager + LocationListener + Demo Pin Surabaya)"]
-        ACC["Accelerometer (Shake Detection + Debounce 1000ms)"]
-        LGT["LightSensor (Lux Context + Hysteresis Dark Mode)"]
-        CMP["CompassFusion (Accelerometer + MagneticField -> Azimuth)"]
+    subgraph Hardware ["2. Hardware & 4 Sensor Real-Time Layer (onResume / onPause)"]
+        LOC["Sensor 1: GPS / Map (LocationManager + OSMDroid + Auto Init onResume)"]
+        ACC["Sensor 2: Accelerometer (TYPE_ACCELEROMETER - Shake Acak Ulang / Reset Filter)"]
+        LGT["Sensor 3: Siang/Malam & Light (TYPE_LIGHT + Indikator Siang/Malam & Hysteresis)"]
+        CMP["Sensor 4: Magnetic Field (TYPE_MAGNETIC_FIELD + Accelerometer - Kompas Digital)"]
     end
 
     subgraph Domain ["3. Domain & Hybrid AI Layer"]
-        FUSE["ContextFusionScorer (Mood + Cuaca + Cahaya + Jarak)"]
+        FUSE["ContextFusionScorer (Mood + Cuaca + Siang/Malam + Jarak)"]
         MOOD_AI["HybridMoodAnalyzer (Gemini/Groq API + Offline Lexicon)"]
     end
 
     subgraph Data ["4. Data Layer — Single Source of Truth"]
         REPO["SantapRepository (ExecutorService Async I/O)"]
-        ROOM[("Room DB Java / SQLiteOpenHelper (places, mood_sessions, recommendation_logs)")]
-        METEO_API["Retrofit Client (Open-Meteo Weather API)"]
+        ROOM[("Room DB Java / SQLiteOpenHelper (users, places, mood_sessions, recommendation_logs, favorite_places)")]
+        METEO_API["Retrofit Client (Open-Meteo Weather API: Suhu, Hujan, Siang/Malam)"]
     end
 
-    MAP_UI --> VM
-    LIST_UI --> VM
-    DET_UI --> VM
+    AUTH_UI --> DASH_UI
+    DASH_UI --> F1_UI
+    DASH_UI --> F2_UI
+    DASH_UI --> F3_UI
+    DASH_UI --> F4_UI
+    DASH_UI --> F5_UI
+
+    F1_UI --> VM
+    F2_UI --> VM
+    F3_UI --> VM
+    F4_UI --> VM
+    F5_UI --> VM
+
     LOC --> VM
     ACC --> VM
     LGT --> VM
-    CMP --> DET_UI
+    CMP --> F2_UI
+    CMP --> F3_UI
 
     VM --> FUSE
     FUSE --> MOOD_AI
@@ -352,13 +388,25 @@ flowchart TB
 
 ## 9. Model Data Relasional (Room Database Schema)
 
-Seluruh data aplikasi dikelola secara terpusat di Room Database (`SantapDatabase`) sebagai **Single Source of Truth** sisi klien:
+Seluruh data aplikasi (termasuk akun lokal & preferensi makanan awal saat Register, katalog tempat makan, tag suasana dari Fitur 4, serta riwayat sesi mood & cuaca) dikelola secara terpusat di Room Database (`SantapDatabase`) sebagai **Single Source of Truth** sisi klien:
 
 ```mermaid
 erDiagram
+    users ||--o{ mood_sessions : "starts"
+    users ||--o{ favorite_places : "bookmarks"
     places ||--o{ recommendation_logs : "recommended_in"
     mood_sessions ||--o{ recommendation_logs : "produces"
     places ||--o{ favorite_places : "saved_as"
+
+    users {
+        int id PK
+        text name
+        text email
+        text password_hash
+        text avatar_uri
+        text initial_food_pref "Preferensi Makanan Awal saat Register"
+        boolean is_logged_in
+    }
 
     places {
         int id PK
@@ -371,23 +419,26 @@ erDiagram
         boolean is_indoor
         boolean has_ac
         text food_temp "hot_soup | warm | cold_fresh | neutral"
-        text mood_tags "stres,lelah,nugas,santai,hemat,senang"
-        text weather_tags "rain,cool,hot,night"
+        text mood_tags "stres,lelah,senang,hemat,lapar,nugas,santai"
+        text weather_tags "rain,cool,hot,day,night"
         text light_pref "dim_cozy,bright_ac,any"
+        text user_vibe_tags "Tag Suasana Tempat Makan dari Fitur 4"
         real base_rating
     }
 
     mood_sessions {
         int id PK
+        int user_id FK
         long timestamp_ms
         text raw_mood_input
-        text detected_emotion "happy | stress | tired | sad | bored | chill"
+        text detected_emotion "stres | lelah | senang | hemat | lapar | santai"
         double user_lat
         double user_lon
         real weather_temp_c
         int weather_code
         boolean is_raining
         real ambient_lux
+        text day_night_context "siang | malam"
         text light_context "gelap | redup | terang | terik"
         text analysis_source "llm_api | offline_fallback"
     }
@@ -398,13 +449,15 @@ erDiagram
         int place_id FK
         real total_score "0.0 - 100.0"
         real distance_meters
-        text ai_reason
+        text ai_reason "Alasan Kecocokan Mood + Cuaca + Siang/Malam"
         boolean triggered_by_shake
     }
 
     favorite_places {
         int id PK
+        int user_id FK
         int place_id FK
+        text custom_vibe_tag "Tag Suasana Pengguna (Fitur 4)"
         long saved_at_ms
     }
 ```
@@ -417,58 +470,60 @@ erDiagram
 
 ```mermaid
 flowchart TD
-    START["Sesi SANTAP Aktif / Pengguna Tekan Cari"] --> CTX["Baca Konteks Paralel:<br/>1. GPS Lat/Lon + Jam Sistem<br/>2. Ambient Light (Lux)<br/>3. Open-Meteo (Suhu & Hujan)"]
-    CTX --> MODE{"Ada Input Teks Bebas & Internet Aktif?"}
+    START["Dashboard Utama / Fitur 1 Aktif"] --> CTX["Baca Konteks Paralel (Auto Init onResume):<br/>1. Sensor 1: GPS Lat/Lon<br/>2. Open-Meteo (Suhu, Kondisi Hujan, Siang/Malam)<br/>3. Sensor 3: Ambient Light (Lux) & Status Siang/Malam"]
+    CTX --> MODE{"Pilih Emoji Mood (Stres/Lelah/Senang/Hemat/Lapar)<br/>atau Ketik Keinginan Makanan Bebas?"}
 
-    MODE -- "Ya" --> LLM["Panggil LLM API (Gemini/Groq)<br/>Ekstrak JSON: emotion, food_temp, atmosphere, max_price"]
-    MODE -- "Tidak / Timeout / Emoji" --> LEX["Offline Indonesian Mood Lexicon<br/>Pemetaan Kata Kunci (IndoNLU + Kaggle Rules)"]
+    MODE -- "Prompt Bahasa Alami & Online" --> LLM["Panggil AI Engine (Gemini/Groq API)<br/>Ekstrak JSON: emotion, food_temp, atmosphere, max_price"]
+    MODE -- "Emoji Cepat / Offline / Timeout" --> LEX["Offline Indonesian Mood Lexicon<br/>Pemetaan Kata Kunci (IndoNLU + Kaggle Rules + Preferensi Awal)"]
 
     LLM -- "API Error / Timeout" --> LEX
-    LLM -- "JSON Valid" --> SCORE["ContextFusionScorer<br/>Hitung S_total (0-100) untuk semua POI di Room"]
+    LLM -- "JSON Valid" --> SCORE["ContextFusionScorer<br/>Hitung S_total (0-100) + Alasan Kecocokan (Mood + Cuaca + Siang/Malam)"]
     LEX --> SCORE
 
-    SCORE --> FILTER["Urutkan Skor Tertinggi & Petakan Warna Pin:<br/>Hijau (>=75) | Kuning (50-74) | Abu-abu (<50)"]
-    FILTER --> SHAKE{"Pengguna Goyang HP (Shake)?"}
-    SHAKE -- "Ya (Delta g > 12, Debounce 1s)" --> TOP1["Tampilkan AlertDialog Rekomendasi #1 + Alasan"]
-    SHAKE -- "Tidak" --> RENDER["Perbarui OSMDroid Map & RecyclerView"]
+    SCORE --> FILTER["Urutkan Skor & Petakan Pin Kuliner Berwarna (Fitur 2):<br/>Hijau (>=75) | Kuning (50-74) | Abu-abu (<50)"]
+    FILTER --> SHAKE{"Kocok HP / Shake (Sensor 2: Accelerometer)?"}
+    SHAKE -- "Ya (Delta g > 12, Debounce 1s)" --> TOP1["Acak Ulang Rekomendasi AI / Reset Filter<br/>& Tampilkan Pilihan Terbaik"]
+    SHAKE -- "Tidak" --> RENDER["Tampilkan Daftar Kuliner (Fitur 1) & Pin Peta OSMDroid (Fitur 2)"]
 ```
 
 ### 10.2 Formulasi Matematis Sensor & Skor Kontekstual
 
 Seluruh rumus di bawah bersifat deterministik dan transparan agar mudah diaudit maupun dijelaskan saat tanya jawab dengan dosen:
 
-#### 1. Deteksi Guncangan (*Shake-to-SANTAP* — `TYPE_ACCELEROMETER`)
-Mengikuti formula standar modul `Tugas7Sensor`:
+#### 1. Deteksi Guncangan (*Shake Detection* — Sensor 2: `TYPE_ACCELEROMETER`)
+Mengikuti formula standar modul `Tugas7Sensor` dan alur **Fitur 1** pada folder `Rancangan`:
 $$\text{Magnitude} = \sqrt{a_x^2 + a_y^2 + a_z^2}$$
 $$\Delta g = |\text{Magnitude} - 9.81\text{ m/s}^2|$$
-- **Syarat Pemicu:** $\Delta g > 12.0\text{ m/s}^2$ **dan** $(t_{\text{sekarang}} - t_{\text{terakhir}}) \ge 1000\text{ ms}$ (*debounce* mencegah dialog muncul berkali-kali dalam satu goyangan).
+- **Syarat Pemicu:** $\Delta g > 12.0\text{ m/s}^2$ **dan** $(t_{\text{sekarang}} - t_{\text{terakhir}}) \ge 1000\text{ ms}$ (*debounce* `1000 ms`).
+- **Aksi pada Fitur 1:** Saat HP dikocok (*Shake*), aplikasi melakukan **Acak Ulang Rekomendasi AI / Reset Filter** serta menampilkan dialog rekomendasi kuliner terpilih beserta alasan kecocokannya.
 
-#### 2. Klasifikasi Cahaya Sekitar & *Auto Dark Mode Hysteresis* (`TYPE_LIGHT`)
+#### 2. Deteksi Siang/Malam, Cahaya Sekitar & *Auto Dark Mode Hysteresis* (Sensor 3: `TYPE_LIGHT` + Waktu/Cuaca)
+- **Konteks Siang/Malam & Atmosfer Rekomendasi (`F-04` & Fitur 1/3):**
+  - Mengombinasikan nilai Lux `Sensor.TYPE_LIGHT`, parameter `is_day` dari Open-Meteo API, dan jam lokal perangkat untuk menentukan status **Siang** atau **Malam**:
+  - **Malam / Redup** ($< 50\text{ Lux}$ atau `is_day == 0`): bobot tambah untuk tempat *cozy/indoor* hangat atau kuliner malam.
+  - **Siang Normal** ($50 - 1000\text{ Lux}$ dan `is_day == 1`): netral.
+  - **Siang Terik** ($> 1000\text{ Lux}$ dan `is_day == 1`): bobot tambah untuk tempat `is_indoor = true`, `has_ac = true`, atau minuman/hidangan segar `cold_fresh`.
 - **Kontrol Tema UI (Hysteresis `Tugas7Sensor`):**
   - $\text{Lux} < 10 \implies$ Aktifkan **Dark Mode**
   - $\text{Lux} > 80 \implies$ Aktifkan **Light Mode**
   - $10 \le \text{Lux} \le 80 \implies$ **Deadband** (pertahankan tema saat ini untuk mencegah layar berkedip).
-- **Konteks Atmosfer Rekomendasi (`F-04`):**
-  - $< 50\text{ Lux}$: `gelap_redup` (bobot tambah tempat *cozy/indoor* hangat atau kuliner malam).
-  - $50 - 1000\text{ Lux}$: `ruangan_normal` (netral).
-  - $> 1000\text{ Lux}$: `terik_outdoor` (bobot tambah tempat `is_indoor = true`, `has_ac = true`, atau minuman segar `cold_fresh`).
 
-#### 3. Kompas Arah Restoran (*Digital Compass Bearing* — Sensor Fusion)
-Menggunakan `SensorManager.getRotationMatrix(R, I, accelReading, magnetReading)` dan `SensorManager.getOrientation(R, orientation)`:
-- $\text{Azimuth}_{\text{HP}} = (\text{toDegrees}(\text{orientation}[0]) + 360^\circ) \bmod 360^\circ$
+#### 3. Kompas Digital Arah Mata Angin ke Lokasi Makan (Sensor 4: `TYPE_MAGNETIC_FIELD` + `TYPE_ACCELEROMETER`)
+Menggunakan `SensorManager.getRotationMatrix(R, I, accelReading, magnetReading)` dan `SensorManager.getOrientation(R, orientation)` pada **Fitur 2 & Fitur 3**:
+- $\text{Azimuth}_{\text{HP}} = (\text{toDegrees}(\text{orientation}[0]) + 360^\circ) \bmod 360^\circ$ (menentukan arah mata angin Utara/Timur/Selatan/Barat)
 - $\text{Bearing}_{\text{Target}}$ dihitung melalui `Location.bearingTo(targetPlaceLocation)`
-- **Sudut Rotasi Jarum Kompas UI:**
+- **Sudut Rotasi Jarum Kompas UI menuju Lokasi Makan:**
   $$\theta_{\text{jarum}} = (\text{Bearing}_{\text{Target}} - \text{Azimuth}_{\text{HP}} + 360^\circ) \bmod 360^\circ$$
 
 #### 4. Skor Kecocokan Total SANTAP ($S_{\text{total}} \in [0, 100]$)
-Untuk setiap tempat makan di Room DB, sistem menghitung:
-$$S_{\text{total}} = 0.40 \cdot S_{\text{mood}} + 0.25 \cdot S_{\text{cuaca}} + 0.15 \cdot S_{\text{cahaya\&waktu}} + 0.20 \cdot S_{\text{jarak}}$$
+Untuk setiap tempat makan di Room DB, sistem menghitung kecocokan berdasarkan **Mood + Cuaca + Siang/Malam + Jarak**:
+$$S_{\text{total}} = 0.40 \cdot S_{\text{mood}} + 0.25 \cdot S_{\text{cuaca}} + 0.15 \cdot S_{\text{siang/malam}} + 0.20 \cdot S_{\text{jarak}}$$
 
 Keterangan komponen ($0 \le S_i \le 100$):
-- **$S_{\text{mood}}$ (40%):** Kecocokan tag emosi/kebutuhan (*comfort food*, *nugas/tenang*, *hemat*, *pedas/segar*) terhadap `mood_tags` dan `price_tier` tempat makan.
-- **$S_{\text{cuaca}}$ (25%):** Kecocokan kondisi Open-Meteo (jika `is_raining == true` atau suhu $< 25^\circ\text{C}$, beri nilai tinggi pada `is_indoor = true` dan `food_temp = hot_soup/warm`; jika suhu $> 31^\circ\text{C}$ dan cerah, beri nilai tinggi pada `has_ac` dan `cold_fresh`).
-- **$S_{\text{cahaya\&waktu}}$ (15%):** Kesesuaian `light_context` dari `TYPE_LIGHT` dan jam makan sistem dengan `light_pref` tempat makan.
-- **$S_{\text{jarak}}$ (20%):** Skor kedekatan Haversine: $S_{\text{jarak}} = \max\left(0,\; 100 \cdot \left(1 - \frac{d_{\text{meter}}}{R_{\text{maks}}}\right)\right)$, dengan $R_{\text{maks}} = 3000\text{ m}$ (atau menyusut ke $1000\text{ m}$ jika bonus `Step Counter` mendeteksi pengguna lelah berjalan).
+- **$S_{\text{mood}}$ (40%):** Kecocokan mood (*Stres, Lelah, Senang, Hemat, Lapar* atau hasil ekstraksi prompt bahasa alami AI + preferensi makanan awal akun) terhadap `mood_tags`, `user_vibe_tags`, dan `price_tier` tempat makan.
+- **$S_{\text{cuaca}}$ (25%):** Kecocokan suhu & kondisi hujan dari Open-Meteo (jika `is_raining == true` atau suhu $< 25^\circ\text{C}$, beri nilai tinggi pada `is_indoor = true` dan `food_temp = hot_soup/warm`; jika suhu $> 31^\circ\text{C}$ dan cerah, beri nilai tinggi pada `has_ac` dan `cold_fresh`).
+- **$S_{\text{siang/malam}}$ (15%):** Kesesuaian kondisi **Siang/Malam** & pencahayaan (`Sensor 3: Siang/Malam & TYPE_LIGHT`) dengan `weather_tags` (`day`/`night`) dan `light_pref` tempat makan.
+- **$S_{\text{jarak}}$ (20%):** Skor kedekatan Haversine: $S_{\text{jarak}} = \max\left(0,\; 100 \cdot \left(1 - \frac{d_{\text{meter}}}{R_{\text{maks}}}\right)\right)$, sesuai filter radius jarak pada **Fitur 2** (default $R_{\text{maks}} = 3000\text{ m}$).
 
 ---
 
@@ -550,18 +605,18 @@ flowchart LR
 | **6** | **Alur Demo Aplikasi Berjalan** | Diagram singkat 5 aksi yang langsung didemokan di HP: (1) Peta OSM + Cuaca Otomatis $\to$ (2) Input Mood $\to$ (3) Tutup Sensor Cahaya (*Auto Dark Mode*) $\to$ (4) Goyang HP (*Shake-to-SANTAP*) $\to$ (5) Putar HP (*Kompas Arah Restoran*). |
 | **7** | **Evaluasi Uji Coba & Penutup** | Ringkasan hasil pengujian di perangkat fisik (kepatuhan *lifecycle* sensor, respons offline/online), batasan sistem secara jujur, dan sesi tanya jawab. |
 
-### 13.2 Skenario *Live Demo* Aplikasi Berjalan (Durasi 3–4 Menit)
+### 13.2 Skenario *Live Demo* Aplikasi Berjalan (Durasi 3–4 Menit — Mengikuti 5 Fitur Rancangan)
 
-1. **Langkah 1 — Konteks Otomatis & Peta OSMDroid:**
-   Buka aplikasi SANTAP (tampilan HP di-mirror ke layar proyektor via kabel USB / `scrcpy`). Tunjukkan posisi GPS di peta OpenStreetMap dan *banner* atas yang otomatis menampilkan suhu/cuaca dari Open-Meteo serta pembacaan Lux sensor cahaya saat ini.
-2. **Langkah 2 — Analisis Mood ke Kuliner (AI + Skor):**
-   Ketik input curhat Bahasa Indonesia (misal *"lagi capek banget butuh yang berkuah hangat dan murah"*) lalu tekan **Analisis**. Tunjukkan daftar rekomendasi langsung terurut dengan alasan AI dan warna *marker* di peta berubah (Hijau/Kuning/Abu-abu).
-3. **Langkah 3 — Demo Sensor Cahaya (`TYPE_LIGHT` + Hysteresis):**
-   Tutup bagian atas HP (sensor cahaya) dengan telapak tangan hingga nilai Lux turun $< 10\text{ Lux}$ $\to$ tunjukkan ke dosen & asisten bahwa tema UI berpindah ke **Dark Mode** secara halus tanpa berkedip, dan konteks rekomendasi menyesuaikan kondisi redup/malam.
-4. **Langkah 4 — Demo Sensor Gerak (*Shake-to-SANTAP* — `TYPE_ACCELEROMETER`):**
-   Goyangkan HP satu kali secara tegas $\to$ muncul `AlertDialog` rekomendasi peringkat #1 yang siap dipilih untuk mengatasi kebingungan (*decision fatigue*).
-5. **Langkah 5 — Demo Sensor Kompas (*Sensor Fusion*) & Implicit Intent:**
-   Klik **"Arahkan dengan Kompas"** $\to$ putar badan/HP ke kanan dan kiri sambil menunjukkan jarum kompas berputar *real-time* menunjuk ke arah restoran tujuan, lalu tunjukkan tombol **"Buka Rute"** (*Implicit Intent*) dan buka sebentar **Live Sensor Monitor Sheet** agar dosen melihat nilai mentah keempat sensor berjalan nyata.
+1. **Langkah 1 — Splash Screen, Login/Register & Dashboard Utama (Auto-Init Sensor):**
+   Buka aplikasi SANTAP (tampilan HP di-mirror ke layar proyektor via kabel USB / `scrcpy`). Tunjukkan alur **Splash Screen $\to$ Login/Register (Preferensi Makanan Awal) $\to$ Dashboard Utama (Home SANTAP)** di mana sensor latar belakang (`onResume`) otomatis mengambil posisi GPS & cuaca Open-Meteo.
+2. **Langkah 2 — FITUR 1 (Analisis Mood & Rekomendasi AI + Kocok HP/Shake):**
+   Pilih **Emoji Mood** (*Stres, Lelah, Senang, Hemat, Lapar*) atau ketik keinginan makanan bebas ke AI (misal *"lagi capek banget butuh yang berkuah hangat dan murah"*). Tunjukkan daftar kuliner beserta **alasan kecocokan Mood + Cuaca + Siang/Malam**, lalu **Kocok HP (Shake - `TYPE_ACCELEROMETER`)** untuk mendemonstrasikan fitur **Acak Ulang Rekomendasi AI / Reset Filter**.
+3. **Langkah 3 — FITUR 2 (Peta Kuliner OSMDroid & Kompas Digital Arah Mata Angin):**
+   Buka **Peta Kuliner**, tunjukkan **Pin Kuliner Berwarna** sesuai skor kecocokan AI, coba **Filter Radius Jarak & Harga**, lalu buka detail tempat makan dan putar HP untuk menunjukkan **Kompas Digital (`TYPE_MAGNETIC_FIELD`)** yang menunjuk arah mata angin ke lokasi makan beserta tombol **Mulai Navigasi Rute Terbaik**.
+4. **Langkah 4 — FITUR 3 (Dashboard Sensor & Atmosfer):**
+   Buka **Dashboard Sensor & Atmosfer** untuk membuktikan ke dosen & asisten pemantauan *real-time* **Suhu, Kondisi Hujan, Siang/Malam** (tutup sensor cahaya `TYPE_LIGHT` untuk melihat perubahan Lux & *Auto Dark Mode*), serta **Status & Tingkat Akurasi Keempat Sensor Perangkat**.
+5. **Langkah 5 — FITUR 4 & FITUR 5 (Favorit, Riwayat, Tag Suasana & Profil):**
+   Tunjukkan penyimpanan tempat makan favorit, riwayat rekomendasi AI berdasarkan mood & cuaca lalu, pemberian **Tag Suasana Tempat Makan** (**Fitur 4**), serta halaman **Profil & Pengaturan Akun** (kelola izin sensor/GPS & Logout — **Fitur 5**).
 
 ---
 

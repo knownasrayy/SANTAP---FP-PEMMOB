@@ -1,0 +1,232 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mxfile host="app.diagrams.net" agent="SANTAP App Designer">
+  <diagram id="santap-flow-1" name="Alur Aplikasi SANTAP">
+    <mxGraphModel dx="1457" dy="845" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="2200" pageHeight="1200" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="title" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=18;fontStyle=1;fontColor=#1a237e;" value="ALUR DIAGRAM APLIKASI SANTAP&lt;br&gt;(Sistem Analisis Tempat Makan Berdasarkan Atmosfer &amp;amp; Perasaan)" vertex="1">
+          <mxGeometry height="50" width="880" x="610" y="20" as="geometry" />
+        </mxCell>
+        <mxCell id="legend_bg" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8f9fa;strokeColor=#adb5bd;verticalAlign=top;align=left;spacingLeft=10;spacingTop=8;fontStyle=1;fontSize=12;fontColor=#212529;" value="LEGENDA WARNA DIAGRAM" vertex="1">
+          <mxGeometry height="270" width="310" x="40" y="30" as="geometry" />
+        </mxCell>
+        <mxCell id="leg_1" parent="1" style="ellipse;whiteSpace=wrap;html=1;fillColor=#1a237e;strokeColor=#0d134a;fontColor=#ffffff;fontStyle=1;fontSize=13;" value="Mulai / Splash Screen" vertex="1">
+          <mxGeometry height="28" width="280" x="55" y="65" as="geometry" />
+        </mxCell>
+        <mxCell id="leg_2" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontColor=#1a237e;fontStyle=1;fontSize=12;arcSize=12;" value="Halaman Sistem / Navigasi Utama" vertex="1">
+          <mxGeometry height="28" width="280" x="55" y="100" as="geometry" />
+        </mxCell>
+        <mxCell id="leg_3" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffe6cc;strokeColor=#d79b00;fontColor=#663c00;fontStyle=1;fontSize=12;arcSize=12;" value="Fitur Utama Aplikasi" vertex="1">
+          <mxGeometry height="28" width="280" x="55" y="135" as="geometry" />
+        </mxCell>
+        <mxCell id="leg_4" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontColor=#3b1c4a;fontStyle=1;fontSize=11;arcSize=10;" value="Integrasi 4 Sensor &amp;amp; AI Engine" vertex="1">
+          <mxGeometry height="28" width="280" x="55" y="170" as="geometry" />
+        </mxCell>
+        <mxCell id="leg_5" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontColor=#1b4d1b;fontSize=11;arcSize=10;" value="Tindakan yang Dapat Dilakukan Pengguna" vertex="1">
+          <mxGeometry height="28" width="280" x="55" y="205" as="geometry" />
+        </mxCell>
+        <mxCell id="start" parent="1" style="ellipse;whiteSpace=wrap;html=1;fillColor=#1a237e;strokeColor=#0d134a;fontColor=#ffffff;fontStyle=1;fontSize=13;" value="Buka Aplikasi SANTAP&lt;br&gt;(Splash Screen)" vertex="1">
+          <mxGeometry height="55" width="220" x="940" y="90" as="geometry" />
+        </mxCell>
+        <mxCell id="auth_check" parent="1" style="rhombus;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontColor=#5c4400;fontStyle=1;fontSize=12;" value="Sesi Login&lt;br&gt;Aktif?" vertex="1">
+          <mxGeometry height="80" width="160" x="970" y="175" as="geometry" />
+        </mxCell>
+        <mxCell id="login_page" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontColor=#1a237e;fontStyle=1;fontSize=12;arcSize=12;" value="Halaman Login" vertex="1">
+          <mxGeometry height="60" width="180" x="650" y="150" as="geometry" />
+        </mxCell>
+        <mxCell id="login_actions" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontColor=#1b4d1b;fontSize=11;arcSize=10;" value="&lt;b&gt;Tindakan Login:&lt;/b&gt;&lt;br&gt;• Input Email &amp;amp; Password&lt;br&gt;• Login via Google&lt;br&gt;• Lupa Password" vertex="1">
+          <mxGeometry height="90" width="190" x="410" y="135" as="geometry" />
+        </mxCell>
+        <mxCell id="register_page" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontColor=#1a237e;fontStyle=1;fontSize=12;arcSize=12;" value="Halaman Register&lt;br&gt;(Daftar Akun)" vertex="1">
+          <mxGeometry height="55" width="180" x="660" y="290" as="geometry" />
+        </mxCell>
+        <mxCell id="register_actions" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontColor=#1b4d1b;fontSize=11;arcSize=10;" value="&lt;b&gt;Tindakan Register:&lt;/b&gt;&lt;br&gt;• Input Nama, Email &amp;amp; Password&lt;br&gt;• Pilih Preferensi Makanan Awal" vertex="1">
+          <mxGeometry height="75" width="210" x="400" y="280" as="geometry" />
+        </mxCell>
+        <mxCell id="dashboard" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontColor=#1a237e;fontStyle=1;fontSize=12;arcSize=12;" value="DASHBOARD UTAMA&lt;br&gt;(Home SANTAP)" vertex="1">
+          <mxGeometry height="65" width="260" x="920" y="310" as="geometry" />
+        </mxCell>
+        <mxCell id="bg_sensors" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontColor=#3b1c4a;fontStyle=1;fontSize=11;arcSize=10;" value="&lt;b&gt;Sensor Latar Belakang Aktif (onResume):&lt;/b&gt;&lt;br&gt;1. Sensor GPS / Map → Lokasi &amp;amp; Cuaca (Open-Meteo)&lt;br&gt;&lt;i&gt;*Unregister otomatis saat onPause() agar hemat baterai&lt;/i&gt;" vertex="1">
+          <mxGeometry height="105" width="360" x="1280" y="220" as="geometry" />
+        </mxCell>
+        <mxCell id="e_start_auth" edge="1" parent="1" source="start" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#495057;strokeWidth=1.5;endArrow=block;endFill=1;fontSize=11;fontColor=#212529;" target="auth_check" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e_auth_login" edge="1" parent="1" source="auth_check" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#495057;strokeWidth=1.5;endArrow=block;endFill=1;fontSize=11;fontColor=#212529;" target="login_page" value="Belum">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e_auth_dash" edge="1" parent="1" source="auth_check" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#495057;strokeWidth=1.5;endArrow=block;endFill=1;fontSize=11;fontColor=#212529;" target="dashboard" value="Sudah">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e_login_act" edge="1" parent="1" source="login_page" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#495057;strokeWidth=1.5;endArrow=block;endFill=1;fontSize=11;fontColor=#212529;" target="login_actions" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e_login_reg" edge="1" parent="1" source="login_page" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#495057;strokeWidth=1.5;endArrow=block;endFill=1;fontSize=11;fontColor=#212529;" target="register_page" value="Belum Punya Akun">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e_reg_act" edge="1" parent="1" source="register_page" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#495057;strokeWidth=1.5;endArrow=block;endFill=1;fontSize=11;fontColor=#212529;" target="register_actions" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e_login_dash" edge="1" parent="1" source="login_page" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#495057;strokeWidth=1.5;endArrow=block;endFill=1;fontSize=11;fontColor=#212529;" target="dashboard" value="Login Berhasil">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e_reg_dash" edge="1" parent="1" source="register_page" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#495057;strokeWidth=1.5;endArrow=block;endFill=1;fontSize=11;fontColor=#212529;" target="dashboard" value="Daftar Berhasil">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e_dash_bg" edge="1" parent="1" source="dashboard" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#9673a6;strokeWidth=1.5;dashed=1;endArrow=block;endFill=1;fontSize=11;fontColor=#3b1c4a;" target="bg_sensors" value="Auto Init">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="f1" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffe6cc;strokeColor=#d79b00;fontColor=#663c00;fontStyle=1;fontSize=12;arcSize=12;" value="FITUR 1:&lt;br&gt;Analisis Mood &amp;amp; Rekomendasi AI" vertex="1">
+          <mxGeometry height="65" width="320" x="50" y="493" as="geometry" />
+        </mxCell>
+        <mxCell id="e_dash_f1" edge="1" parent="1" source="dashboard" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#495057;strokeWidth=1.5;endArrow=block;endFill=1;fontSize=11;fontColor=#212529;" target="f1" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="f1_sensor" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontColor=#3b1c4a;fontStyle=1;fontSize=11;arcSize=10;" value="&lt;b&gt;AI Engine (Gemini / Groq API)&lt;/b&gt;&lt;br&gt;+ &lt;b&gt;Sensor 2: Accelerometer&lt;/b&gt;&lt;br&gt;(TYPE_ACCELEROMETER - Shake Detection)" vertex="1">
+          <mxGeometry height="80" width="320" x="50" y="588" as="geometry" />
+        </mxCell>
+        <mxCell id="e_f1_sensor" edge="1" parent="1" source="f1" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#9673a6;strokeWidth=1.5;dashed=1;endArrow=block;endFill=1;fontSize=11;fontColor=#3b1c4a;" target="f1_sensor" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="f1_act1" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontColor=#1b4d1b;fontSize=11;arcSize=10;" value="Pilih Mood Cepat via Emoji&lt;br&gt;(Stres, Lelah, Senang, Hemat, Lapar)" vertex="1">
+          <mxGeometry height="62" width="320" x="50" y="698" as="geometry" />
+        </mxCell>
+        <mxCell id="e_f1_sensor_f1_act1" edge="1" parent="1" source="f1_sensor" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#495057;strokeWidth=1.5;endArrow=block;endFill=1;fontSize=11;fontColor=#212529;" target="f1_act1" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="f1_act2" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontColor=#1b4d1b;fontSize=11;arcSize=10;" value="Ketik Keinginan Makanan Bebas&lt;br&gt;(Prompt Bahasa Alami ke AI)" vertex="1">
+          <mxGeometry height="62" width="320" x="50" y="780" as="geometry" />
+        </mxCell>
+        <mxCell id="e_f1_act1_f1_act2" edge="1" parent="1" source="f1_act1" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#495057;strokeWidth=1.5;endArrow=block;endFill=1;fontSize=11;fontColor=#212529;" target="f1_act2" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="f1_act3" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontColor=#1b4d1b;fontSize=11;arcSize=10;" value="Kocok HP (Shake) untuk Acak Ulang&lt;br&gt;Rekomendasi AI / Reset Filter" vertex="1">
+          <mxGeometry height="62" width="320" x="50" y="862" as="geometry" />
+        </mxCell>
+        <mxCell id="e_f1_act2_f1_act3" edge="1" parent="1" source="f1_act2" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#495057;strokeWidth=1.5;endArrow=block;endFill=1;fontSize=11;fontColor=#212529;" target="f1_act3" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="f1_act4" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontColor=#1b4d1b;fontSize=11;arcSize=10;" value="Lihat Daftar Kuliner &amp;amp; Alasan&lt;br&gt;Kecocokan Mood + Cuaca + Siang/malam" vertex="1">
+          <mxGeometry height="62" width="320" x="50" y="944" as="geometry" />
+        </mxCell>
+        <mxCell id="e_f1_act3_f1_act4" edge="1" parent="1" source="f1_act3" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#495057;strokeWidth=1.5;endArrow=block;endFill=1;fontSize=11;fontColor=#212529;" target="f1_act4" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="f2" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffe6cc;strokeColor=#d79b00;fontColor=#663c00;fontStyle=1;fontSize=12;arcSize=12;" value="FITUR 2:&lt;br&gt;Peta Kuliner &amp;amp; Kompas Arah" vertex="1">
+          <mxGeometry height="65" width="320" x="470" y="493" as="geometry" />
+        </mxCell>
+        <mxCell id="e_dash_f2" edge="1" parent="1" source="dashboard" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#495057;strokeWidth=1.5;endArrow=block;endFill=1;fontSize=11;fontColor=#212529;" target="f2" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="f2_sensor" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontColor=#3b1c4a;fontStyle=1;fontSize=11;arcSize=10;" value="&lt;b&gt;Sensor 1: GPS / Map&lt;/b&gt; (Leaflet &amp;amp; OSM)&lt;br&gt;+ &lt;b&gt;Sensor 4: Magnetic Field&lt;/b&gt;&lt;br&gt;(TYPE_MAGNETIC_FIELD - Kompas Digital)" vertex="1">
+          <mxGeometry height="80" width="320" x="470" y="588" as="geometry" />
+        </mxCell>
+        <mxCell id="e_f2_sensor" edge="1" parent="1" source="f2" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#9673a6;strokeWidth=1.5;dashed=1;endArrow=block;endFill=1;fontSize=11;fontColor=#3b1c4a;" target="f2_sensor" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="f2_act1" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontColor=#1b4d1b;fontSize=11;arcSize=10;" value="Jelajahi Pin Kuliner Berwarna&lt;br&gt;Sesuai Skor Kecocokan AI" vertex="1">
+          <mxGeometry height="62" width="320" x="470" y="698" as="geometry" />
+        </mxCell>
+        <mxCell id="e_f2_sensor_f2_act1" edge="1" parent="1" source="f2_sensor" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#495057;strokeWidth=1.5;endArrow=block;endFill=1;fontSize=11;fontColor=#212529;" target="f2_act1" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="f2_act2" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontColor=#1b4d1b;fontSize=11;arcSize=10;" value="Filter Radius Jarak dan Harga" vertex="1">
+          <mxGeometry height="62" width="320" x="470" y="780" as="geometry" />
+        </mxCell>
+        <mxCell id="e_f2_act1_f2_act2" edge="1" parent="1" source="f2_act1" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#495057;strokeWidth=1.5;endArrow=block;endFill=1;fontSize=11;fontColor=#212529;" target="f2_act2" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="f2_act3" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontColor=#1b4d1b;fontSize=11;arcSize=10;" value="Gunakan Kompas Digital untuk Melihat&lt;br&gt;Arah Mata Angin ke Lokasi Makan" vertex="1">
+          <mxGeometry height="62" width="320" x="470" y="862" as="geometry" />
+        </mxCell>
+        <mxCell id="e_f2_act2_f2_act3" edge="1" parent="1" source="f2_act2" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#495057;strokeWidth=1.5;endArrow=block;endFill=1;fontSize=11;fontColor=#212529;" target="f2_act3" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="f2_act4" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontColor=#1b4d1b;fontSize=11;arcSize=10;" value="Lihat Detail Restoran &amp;amp;&lt;br&gt;Mulai Navigasi Rute Terbaik" vertex="1">
+          <mxGeometry height="62" width="320" x="470" y="944" as="geometry" />
+        </mxCell>
+        <mxCell id="e_f2_act3_f2_act4" edge="1" parent="1" source="f2_act3" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#495057;strokeWidth=1.5;endArrow=block;endFill=1;fontSize=11;fontColor=#212529;" target="f2_act4" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="f3" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffe6cc;strokeColor=#d79b00;fontColor=#663c00;fontStyle=1;fontSize=12;arcSize=12;" value="FITUR 3:&lt;br&gt;Dashboard Sensor &amp;amp; Atmosfer" vertex="1">
+          <mxGeometry height="65" width="320" x="890" y="493" as="geometry" />
+        </mxCell>
+        <mxCell id="e_dash_f3" edge="1" parent="1" source="dashboard" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#495057;strokeWidth=1.5;endArrow=block;endFill=1;fontSize=11;fontColor=#212529;" target="f3" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="f3_sensor" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontColor=#3b1c4a;fontStyle=1;fontSize=11;arcSize=10;" value="&lt;b&gt;Monitoring 4 Sensor Real-Time&lt;/b&gt;&lt;br&gt;(GPS, Accelerometer, Siang/malam, Magnetic Field)&lt;br&gt;+ Data Cuaca Open-Meteo API" vertex="1">
+          <mxGeometry height="80" width="320" x="890" y="588" as="geometry" />
+        </mxCell>
+        <mxCell id="e_f3_sensor" edge="1" parent="1" source="f3" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#9673a6;strokeWidth=1.5;dashed=1;endArrow=block;endFill=1;fontSize=11;fontColor=#3b1c4a;" target="f3_sensor" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="f3_act1" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontColor=#1b4d1b;fontSize=11;arcSize=10;" value="Pantau Suhu,&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(27, 77, 27), rgb(152, 195, 152));&quot;&gt;&amp;nbsp;Kondisi Hujan , siang/malam&lt;/span&gt;" vertex="1">
+          <mxGeometry height="62" width="320" x="890" y="698" as="geometry" />
+        </mxCell>
+        <mxCell id="e_f3_sensor_f3_act1" edge="1" parent="1" source="f3_sensor" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#495057;strokeWidth=1.5;endArrow=block;endFill=1;fontSize=11;fontColor=#212529;" target="f3_act1" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="f3_act2" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontColor=#1b4d1b;fontSize=11;arcSize=10;" value="Lihat Status &amp;amp; Tingkat Akurasi&lt;br&gt;Keempat Sensor Perangkat" vertex="1">
+          <mxGeometry height="62" width="320" x="890" y="780" as="geometry" />
+        </mxCell>
+        <mxCell id="e_f3_act1_f3_act2" edge="1" parent="1" source="f3_act1" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#495057;strokeWidth=1.5;endArrow=block;endFill=1;fontSize=11;fontColor=#212529;" target="f3_act2" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="f4" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffe6cc;strokeColor=#d79b00;fontColor=#663c00;fontStyle=1;fontSize=12;arcSize=12;" value="FITUR 4:&lt;br&gt;Favorit &amp;amp; Riwayat Kuliner" vertex="1">
+          <mxGeometry height="65" width="320" x="1310" y="493" as="geometry" />
+        </mxCell>
+        <mxCell id="e_dash_f4" edge="1" parent="1" source="dashboard" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#495057;strokeWidth=1.5;endArrow=block;endFill=1;fontSize=11;fontColor=#212529;" target="f4" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="f4_act1" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontColor=#1b4d1b;fontSize=11;arcSize=10;" value="Simpan / Hapus Daftar Tempat&lt;br&gt;Makan Favorit Pengguna" vertex="1">
+          <mxGeometry height="62" width="320" x="1310" y="588" as="geometry" />
+        </mxCell>
+        <mxCell id="e_f4_f4_act1" edge="1" parent="1" source="f4" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#495057;strokeWidth=1.5;endArrow=block;endFill=1;fontSize=11;fontColor=#212529;" target="f4_act1" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="f4_act2" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontColor=#1b4d1b;fontSize=11;arcSize=10;" value="Lihat Riwayat Rekomendasi AI&lt;br&gt;Berdasarkan Mood &amp;amp; Cuaca Lalu" vertex="1">
+          <mxGeometry height="62" width="320" x="1310" y="670" as="geometry" />
+        </mxCell>
+        <mxCell id="e_f4_act1_f4_act2" edge="1" parent="1" source="f4_act1" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#495057;strokeWidth=1.5;endArrow=block;endFill=1;fontSize=11;fontColor=#212529;" target="f4_act2" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="f4_act3" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontColor=#1b4d1b;fontSize=11;arcSize=10;" value="Beri Tag&lt;br&gt;Suasana Tempat Makan" vertex="1">
+          <mxGeometry height="62" width="320" x="1310" y="752" as="geometry" />
+        </mxCell>
+        <mxCell id="e_f4_act2_f4_act3" edge="1" parent="1" source="f4_act2" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#495057;strokeWidth=1.5;endArrow=block;endFill=1;fontSize=11;fontColor=#212529;" target="f4_act3" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="f5" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffe6cc;strokeColor=#d79b00;fontColor=#663c00;fontStyle=1;fontSize=12;arcSize=12;" value="FITUR 5:&lt;br&gt;Profil &amp;amp; Pengaturan Akun" vertex="1">
+          <mxGeometry height="65" width="320" x="1730" y="493" as="geometry" />
+        </mxCell>
+        <mxCell id="e_dash_f5" edge="1" parent="1" source="dashboard" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#495057;strokeWidth=1.5;endArrow=block;endFill=1;fontSize=11;fontColor=#212529;" target="f5" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="f5_act1" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontColor=#1b4d1b;fontSize=11;arcSize=10;" value="Ubah Username &amp;amp; Foto Profil" vertex="1">
+          <mxGeometry height="62" width="320" x="1730" y="588" as="geometry" />
+        </mxCell>
+        <mxCell id="e_f5_f5_act1" edge="1" parent="1" source="f5" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#495057;strokeWidth=1.5;endArrow=block;endFill=1;fontSize=11;fontColor=#212529;" target="f5_act1" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="f5_act2" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontColor=#1b4d1b;fontSize=11;arcSize=10;" value="Ubah Password &amp;amp; Alamat Email" vertex="1">
+          <mxGeometry height="62" width="320" x="1730" y="670" as="geometry" />
+        </mxCell>
+        <mxCell id="e_f5_act1_f5_act2" edge="1" parent="1" source="f5_act1" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#495057;strokeWidth=1.5;endArrow=block;endFill=1;fontSize=11;fontColor=#212529;" target="f5_act2" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e_f5_act2_f5_act3" edge="1" parent="1" source="f5_act2" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#495057;strokeWidth=1.5;endArrow=block;endFill=1;fontSize=11;fontColor=#212529;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" target="f5_act4" value="">
+          <mxGeometry relative="1" x="-0.8214" as="geometry">
+            <mxPoint x="1890" y="752" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="f5_act4" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontColor=#1b4d1b;fontSize=11;arcSize=10;" value="Kelola Izin Sensor / GPS &amp;amp;&lt;br&gt;Logout (Kembali ke Halaman Login)" vertex="1">
+          <mxGeometry height="62" width="320" x="1730" y="760" as="geometry" />
+        </mxCell>
+        <mxCell id="-b4SxXPEdsY74CPrLd6n-3" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;fontSize=11;arcSize=10;" value="Kalau sempet" vertex="1">
+          <mxGeometry height="28" width="280" x="55" y="252" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
